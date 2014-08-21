@@ -26,24 +26,8 @@ public class CrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-//        Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, 0);
-//        newPosition.x = startX + Mathf.Lerp(-4, 4, (Mathf.Sin(Time.time / 100 * speed) + 1) / 2);
-//
-//        if (newPosition.x > transform.position.x && transform.localScale.x != -1)
-//        {
-//            transform.localScale = new Vector3(-1, 1, 1);
-//        } 
-//        else if (newPosition.x < transform.position.x && transform.localScale.x != 1)
-//        {
-//            transform.localScale = new Vector3(1, 1, 1);
-//        }
-
-//        transform.position = newPosition;
-
         float distCovered = (Time.time - startTime) * speed / 100;
         float fracJourney = distCovered / journeyLength;
-
-        Debug.Log(fracJourney);
 
         transform.position = Vector3.Lerp(start, target, fracJourney);
 
@@ -56,7 +40,6 @@ public class CrowController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    
     }
 
     public void fire()

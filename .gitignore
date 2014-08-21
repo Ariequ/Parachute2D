@@ -1,0 +1,12 @@
+
+*.csproj
+
+Library/*
+
+Temp/*
+
+Parachute2D_GitHub-csharp.sln
+
+Parachute2D_GitHub.sln
+
+Parachute2D_GitHub.userprefs
