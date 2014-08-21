@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParachuteController : MonoBehaviour {
+public class ParachuteController : MonoBehaviour
+{
+    private const string IDLE_TYPE = "idleType";
+    private Animator animator;
+    private int currentIdleType;
+    // Use this for initialization
+    void Start()
+    {
+        animator = GetComponent<Animator>();  
+        currentIdleType = 1;
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnCollisionEnter2D(Collision2D collision) 
+    void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("parachute OnCollisionEnter2D");
         GameObject collistionObject = collision.gameObject;
@@ -21,7 +21,7 @@ public class ParachuteController : MonoBehaviour {
         {
             collistionObject.transform.parent = transform;
 
-            collistionObject.GetComponent<Animator>().SetBool("collider",true);
+            collistionObject.GetComponent<Animator>().SetBool("collider", true);
 
             Rigidbody2D rigidbody = collistionObject.GetComponent<Rigidbody2D>();
             Destroy(rigidbody);
@@ -31,6 +31,19 @@ public class ParachuteController : MonoBehaviour {
            
             collistionObject.transform.position = adjustPositon;
 
+            Physics2D.gravity += new Vector2(0, -5);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("parachute OnTriggerEnter2D");
+
+        if (other.tag == "Shit")
+        {
+            currentIdleType = Mathf.Clamp(++currentIdleType, 1, 3);
+            Debug.Log(currentIdleType);
+            animator.SetInteger(IDLE_TYPE, currentIdleType);
             Physics2D.gravity += new Vector2(0, -5);
         }
     }

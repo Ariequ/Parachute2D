@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
             {
                 go.SetActive(false);
             }
+
+            iTween.ShakePosition(Camera.main.gameObject,iTween.Hash("y",0.3f,"time",1.0f));
         }
     }
 

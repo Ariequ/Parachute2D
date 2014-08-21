@@ -22,13 +22,17 @@ public class ShitController : MonoBehaviour
         Debug.Log("shit OnCollisionEnter2D");
         animator.SetBool("collider",true);
        
-        Vector3 adjustPositon = transform.position;
-        adjustPositon.y -= 0.2f;
-        
-        transform.position = adjustPositon;
-        transform.parent = collision.gameObject.transform;
+        rigidbody2D.isKinematic = true;
+    }
 
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        Destroy(rigidbody);
+    void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("shit OnTriggerEnter2D");
+        animator.SetBool("collider",true);
+        rigidbody2D.isKinematic = true;
+    }
+
+    public void OnExpodeOver()
+    {
+        Destroy(gameObject);
     }
 }
