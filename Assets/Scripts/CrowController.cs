@@ -7,6 +7,7 @@ public class CrowController : MonoBehaviour
     public float speed = 20;
     public float shitFactior = 0.01f;
     public int direction;
+	public int shitCount = 1;
 
     private float startTime;
     private float journeyLength;
@@ -31,14 +32,9 @@ public class CrowController : MonoBehaviour
 
         transform.position = Vector3.Lerp(start, target, fracJourney);
 
-        if (Random.value < shitFactior)
+		if (Random.value < shitFactior && shitCount-- > 0)
         {
             fire();
-        }
-
-        if (transform.position.y - Camera.main.transform.position.y > Screen.height / 100)
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -55,4 +51,9 @@ public class CrowController : MonoBehaviour
         enabled = true;
         startTime = Time.time;
     }
+
+	void OnBecameInvisible()
+	{
+		Destroy(gameObject);
+	}
 }

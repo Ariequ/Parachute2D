@@ -7,26 +7,24 @@ public class BulletController : MonoBehaviour
 {
     private Animator animator;
     // Use this for initialization
-    void Start()
+    void Start ()
     {
-        animator = GetComponent<Animator>();
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-    
+        animator = GetComponent<Animator> ();
     }
 
-    public void OnAnimationEnd()
+    public void OnAnimationEnd ()
     {
-        Debug.Log("animation end");
-        Destroy(gameObject);
+        Destroy (gameObject);
     }
 
-    void OnCollisionEnter2D(Collision2D coll)  
+    void OnCollisionEnter2D (Collision2D collision)
     {
-        Debug.Log(coll.gameObject.name);
-        animator.SetBool("explode", true);
+        animator.SetBool ("explode", true);
+
+        if (collision.gameObject.tag != Tags.PILOT) 
+        {
+            rigidbody2D.collider2D.enabled = false;
+        }
+
     }
 }

@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 v = rigidbody2D.velocity;
-//        v.y = ySpeed;
         if (Input.GetMouseButtonDown(0))
         {
             lastTouchTime = Time.time;
@@ -71,6 +70,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            Debug.Log("OnCollisionEnter2D");
+
             animator.SetBool("die", true);
 
             Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();

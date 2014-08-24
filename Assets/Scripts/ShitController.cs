@@ -6,33 +6,20 @@ public class ShitController : MonoBehaviour
     private Animator animator;
 
     // Use this for initialization
-    void Start()
+    void Start ()
     {
-        animator = GetComponent<Animator>();
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-    
+        animator = GetComponent<Animator> ();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D (Collider2D other)
     {
-        Debug.Log("shit OnCollisionEnter2D");
-        animator.SetBool("collider",true);
-       
-        rigidbody2D.isKinematic = true;
+        animator.SetBool ("collider", true);
+        rigidbody2D.collider2D.enabled = false;
+        rigidbody2D.Sleep ();
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("shit OnTriggerEnter2D");
-        animator.SetBool("collider",true);
-        rigidbody2D.isKinematic = true;
-    }
-
-    public void OnExpodeOver()
+    public void OnExpodeOver ()
     {
-        Destroy(gameObject);
+        Destroy (gameObject);
     }
 }
