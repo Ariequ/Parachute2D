@@ -3,14 +3,16 @@ using System.Collections;
 
 public class GameController : MonoBehaviour
 {
-    public UIController uiController;
-    public float[] gizmosX;
+    public int gizmosCount;
     public float gravityUpdateTime = 1f;
+    public GameObject endGameUI;
+
     private float lastGravityUpdateTime;
     private GameObject parachute;
     private GameObject player;
     private  PlayerController parachuteController;
     private bool gameStart;
+
 
 #if UNITY_IPHONE 
     private ADBannerView banner = null;
@@ -20,6 +22,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        endGameUI.SetActive (false);
         Physics2D.gravity = new Vector2 (0, -10);
         gameStart = false;
         parachute = GameObject.FindGameObjectWithTag ("Parachute");
@@ -46,27 +49,32 @@ public class GameController : MonoBehaviour
         }
     }
     
-    public void StartGame ()
+    public void StartGame (GameObject obj)
     {
-        if (uiController.label1.text == "TRY AGAIN") {
-            Application.LoadLevel (0);
-        }
+//        if (uiController.label1.text == "TRY AGAIN") {
+//            Application.LoadLevel (0);
+//        }
 
         Physics2D.gravity = new Vector2 (0, -10);
 
         parachuteController.enabled = true;
 
-        uiController.gameObject.SetActive (false);
-
         gameStart = true;
+
+        obj.SetActive (false);
+    }
+
+    public void Replay()
+    {
+        Application.LoadLevel (0);
     }
 
     public void EndGame ()
     {
+        endGameUI.SetActive (true);
         parachute.SetActive (false);
         player.SetActive (false);
-        uiController.gameObject.SetActive (true);
-        uiController.label1.text = "TRY AGAIN";
+
 
 #if UNITY_IPHONE 
         if (adLoaded)
@@ -79,9 +87,9 @@ public class GameController : MonoBehaviour
     void OnDrawGizmos ()
     {
         Gizmos.color = Color.yellow;
-        float gap = 6.4f / (gizmosX.Length - 1);
+        float gap = 6.4f / (gizmosCount - 1);
 
-        for (int i = 0; i < gizmosX.Length; i++) {
+        for (int i = 0; i < gizmosCount; i++) {
             Gizmos.DrawLine (new Vector3 (-3.2f + gap * i, 1000, 0), new Vector3 (-3.2f + gap * i, -1000, 0));
         }
     }
