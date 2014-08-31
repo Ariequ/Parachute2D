@@ -19,10 +19,30 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 v = rigidbody2D.velocity;
+        Vector3 localScale = transform.localScale;
+        if (Input.GetKeyDown(KeyCode.RightArrow) )
+        {
+            lastTouchTime = Time.time;
+            v.x = xSpeed;
+            rigidbody2D.velocity = v;
+            localScale.x = 1;
+            right.SetActive(true);
+            StartCoroutine(hideright());
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            v.x = -xSpeed;
+            lastTouchTime = Time.time;
+            rigidbody2D.velocity = v;
+            localScale.x = -1;
+            left.SetActive(true);
+            StartCoroutine(hideleft());
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             lastTouchTime = Time.time;
-            Vector3 localScale = transform.localScale;
+//            Vector3 localScale = transform.localScale;
 
             if (Input.mousePosition.x < Screen.width / 2)
             { 
@@ -42,8 +62,10 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(hideright());
             }
 
-            transform.localScale = localScale;
+
         }
+
+        transform.localScale = localScale;
 
         if (Time.time - lastTouchTime <= 0.5)
         {
