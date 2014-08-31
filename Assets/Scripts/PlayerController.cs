@@ -16,12 +16,13 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Vector2 v = rigidbody2D.velocity;
         Vector3 localScale = transform.localScale;
         if (Input.GetKeyDown(KeyCode.RightArrow) )
         {
+            Debug.Log("key down");
             lastTouchTime = Time.time;
             v.x = xSpeed;
             rigidbody2D.velocity = v;
@@ -29,8 +30,9 @@ public class PlayerController : MonoBehaviour
             right.SetActive(true);
             StartCoroutine(hideright());
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            Debug.Log("key down");
             v.x = -xSpeed;
             lastTouchTime = Time.time;
             rigidbody2D.velocity = v;
@@ -60,9 +62,7 @@ public class PlayerController : MonoBehaviour
                 localScale.x = 1;
                 right.SetActive(true);
                 StartCoroutine(hideright());
-            }
-
-
+           }      
         }
 
         transform.localScale = localScale;
