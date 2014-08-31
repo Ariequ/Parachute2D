@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class HudController : MonoBehaviour 
 {
     public GameObject player;
+	public int ScaleFactor = 7;
+
     private Text score;
     private Vector3 orinalPosition;
 	// Use this for initialization
@@ -17,6 +19,6 @@ public class HudController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        score.text = "Score: " +  (int)(orinalPosition.y - player.transform.position.y) / 2;
+		score.text = "Score: " +  (int)(orinalPosition.y - player.transform.position.y) / ScaleFactor;
 	}
 }
