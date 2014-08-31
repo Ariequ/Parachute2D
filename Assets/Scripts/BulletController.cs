@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+		//kkoklk,kmkkk
         animator = GetComponent<Animator> ();
     }
 
