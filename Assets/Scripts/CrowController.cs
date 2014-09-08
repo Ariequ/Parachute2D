@@ -31,11 +31,11 @@ public class CrowController : MonoBehaviour
         float fracJourney = distCovered / journeyLength;
 
         transform.position = Vector3.Lerp(start, target, fracJourney);
-
-		if (Random.value < shitFactior && shitCount-- > 0)
-        {
-            fire();
-        }
+//
+//		if (Random.value < shitFactior && shitCount-- > 0)
+//        {
+//            fire();
+//        }
     }
 
     public void fire()
@@ -47,7 +47,6 @@ public class CrowController : MonoBehaviour
 
     void OnBecameVisible()
     {
-        Debug.Log("OnBecameVisible");
         enabled = true;
         startTime = Time.time;
     }

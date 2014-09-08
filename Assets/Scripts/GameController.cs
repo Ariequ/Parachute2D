@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -13,6 +14,17 @@ public class GameController : MonoBehaviour
     private  PlayerController parachuteController;
     private bool gameStart;
 
+    public float downGravity = -30;
+    public float normalGravity = -5;
+    public float speedGravity = - 50;
+    public float ironMeshGravity = 5;
+
+    public float totalEnergy = 100;
+    public float currentEnergy = 0;
+    public float energyConsumeSpeed = 1;
+
+    public Image energyImage;
+
 
 #if UNITY_IPHONE 
     private ADBannerView banner = null;
@@ -22,6 +34,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        UpdateEnergyImage ();
         endGameUI.SetActive (false);
         Physics2D.gravity = new Vector2 (0, -10);
         gameStart = false;
@@ -34,7 +47,7 @@ public class GameController : MonoBehaviour
         Physics2D.gravity = new Vector2 (0, 0);
 
 #if UNITY_IPHONE 
-        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Bottom);
+        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
         ADBannerView.onBannerWasClicked += OnBannerClicked;
         ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
         banner.visible = false;
@@ -44,7 +57,7 @@ public class GameController : MonoBehaviour
     void Update ()
     {
         if (gameStart && Time.time - lastGravityUpdateTime > gravityUpdateTime) {
-            Physics2D.gravity += new Vector2 (0, -1);
+//            Physics2D.gravity += new Vector2 (0, -1);
             lastGravityUpdateTime = Time.time;
         }
     }
@@ -55,7 +68,7 @@ public class GameController : MonoBehaviour
 //            Application.LoadLevel (0);
 //        }
 
-        Physics2D.gravity = new Vector2 (0, -10);
+        Physics2D.gravity = new Vector2 (0, downGravity);
 
         parachuteController.enabled = true;
 
@@ -106,9 +119,19 @@ public class GameController : MonoBehaviour
 
     }
 
+    public void AddEnergy(float amount)
+    {
+        currentEnergy += amount;
+        UpdateEnergyImage ();
+    }
+
+    public void UpdateEnergyImage()
+    {
+        energyImage.fillAmount = currentEnergy / totalEnergy;
+    }
+
     void OnDestroy ()
     {
-        Debug.Log ("On Destroy");
 #if UNITY_IPHONE 
         banner.visible = false;
         banner = null;

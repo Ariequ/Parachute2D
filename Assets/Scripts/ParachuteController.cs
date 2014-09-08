@@ -4,14 +4,18 @@ using System.Collections;
 public class ParachuteController : MonoBehaviour
 {
     public GameObject screenEffect;
+    public float gravityStep;
 
     private const string IDLE_TYPE = "idleType";
     private Animator animator;
     private int currentIdleType;
 
+    private GameController gameController;
+
     // Use this for initialization
     void Start()
     {
+        gameController = GameObject.Find ("GameController").GetComponent<GameController> ();
         animator = GetComponent<Animator>();  
         currentIdleType = 1;
     }
@@ -25,11 +29,13 @@ public class ParachuteController : MonoBehaviour
             currentIdleType = Mathf.Clamp(++currentIdleType, 1, 3);
             Debug.Log(currentIdleType);
             animator.SetInteger(IDLE_TYPE, currentIdleType);
-            Physics2D.gravity += new Vector2(0, -5);
-			iTween.ShakePosition(Camera.main.gameObject,iTween.Hash("y",0.1f,"time",0.1f));
+            gameController.normalGravity += -gameController.ironMeshGravity;
+            gameController.downGravity += -gameController.ironMeshGravity;
+//            Physics2D.gravity += new Vector2(0, -5);
+//			iTween.ShakePosition(Camera.main.gameObject,iTween.Hash("y",0.1f,"time",0.1f));
 
-            screenEffect.SetActive(true);
-            StartCoroutine(hideScreenEffect());
+//            screenEffect.SetActive(true);
+//            StartCoroutine(hideScreenEffect());
         }
     }
 
