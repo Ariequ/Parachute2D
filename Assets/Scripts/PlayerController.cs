@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
     public GameObject left;
     private float lastTouchTime = 0;
 
+    public GameController gameController;
+
+    public Rect downControlRct = new Rect (0, 0, 100, 100);
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -20,31 +24,40 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 v = rigidbody2D.velocity;
         Vector3 localScale = transform.localScale;
-        if (Input.GetKeyDown(KeyCode.RightArrow) )
-        {
-            Debug.Log("key down");
+        if (Input.GetKeyDown (KeyCode.RightArrow)) {
+            Debug.Log ("key down");
             lastTouchTime = Time.time;
             v.x = xSpeed;
             rigidbody2D.velocity = v;
             localScale.x = 1;
-            right.SetActive(true);
-            StartCoroutine(hideright());
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Debug.Log("key down");
+            right.SetActive (true);
+            StartCoroutine (hideright ());
+
+            Physics2D.gravity = new Vector2 (0, gameController.normalGravity);
+        } else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+            Debug.Log ("key down");
             v.x = -xSpeed;
             lastTouchTime = Time.time;
             rigidbody2D.velocity = v;
             localScale.x = -1;
-            left.SetActive(true);
-            StartCoroutine(hideleft());
+            left.SetActive (true);
+            StartCoroutine (hideleft ());
+            Physics2D.gravity = new Vector2 (0, gameController.normalGravity);
+        } else if (Input.GetKey(KeyCode.DownArrow) && gameController.currentEnergy > 0) {
+            lastTouchTime = Time.time;
+            Physics2D.gravity = new Vector2 (0, gameController.speedGravity);
+            gameController.AddEnergy(-gameController.energyConsumeSpeed*Time.deltaTime);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton (0) && inRect (Input.mousePosition) && gameController.currentEnergy > 0) {
+            lastTouchTime = Time.time;
+            Physics2D.gravity = new Vector2 (0, gameController.speedGravity);
+            gameController.AddEnergy(-gameController.energyConsumeSpeed*Time.deltaTime);
+        }
+
+       else if (Input.GetMouseButtonDown(0))
         {
             lastTouchTime = Time.time;
-//            Vector3 localScale = transform.localScale;
 
             if (Input.mousePosition.x < Screen.width / 2)
             { 
@@ -54,6 +67,7 @@ public class PlayerController : MonoBehaviour
                 localScale.x = -1;
                 left.SetActive(true);
                 StartCoroutine(hideleft());
+                Physics2D.gravity = new Vector2(0, gameController.normalGravity);
             }
             else
             {
@@ -62,6 +76,7 @@ public class PlayerController : MonoBehaviour
                 localScale.x = 1;
                 right.SetActive(true);
                 StartCoroutine(hideright());
+                Physics2D.gravity = new Vector2(0, gameController.normalGravity);
            }      
         }
 
@@ -70,9 +85,11 @@ public class PlayerController : MonoBehaviour
         if (Time.time - lastTouchTime <= 0.5)
         {
             animator.SetFloat("SpeedX", 1);
-        } else
+        } 
+        else
         {
             animator.SetFloat("SpeedX", 0);
+            Physics2D.gravity = new Vector2(0, gameController.downGravity);
         }
     }
 
@@ -90,28 +107,35 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Debug.Log("OnCollisionEnter2D");
+        if (collision.gameObject.tag == "Enemy") {
+            animator.SetBool ("die", true);
 
-            animator.SetBool("die", true);
-
-            Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
+            Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D> ();
             rigidbody.isKinematic = true;
 
-            GameObject go = GameObject.FindGameObjectWithTag("Parachute");
-            if (go != null)
-            {
-                go.SetActive(false);
+            GameObject go = GameObject.FindGameObjectWithTag ("Parachute");
+            if (go != null) {
+                go.SetActive (false);
             }
 
-            iTween.ShakePosition(Camera.main.gameObject,iTween.Hash("y",0.3f,"time",1.0f));
+            iTween.ShakePosition (Camera.main.gameObject, iTween.Hash ("y", 0.3f, "time", 1.0f));
+        } 
+        else if (collision.gameObject.tag == "Energy") {
+            gameController.AddEnergy(10);
+            Destroy(collision.gameObject);
         }
     }
 
     public void OnDieAniamtionEnd()
     {
         GameObject.Find("GameController").SendMessage("EndGame");
+    }
+
+    private bool inRect(Vector3 mousePosition)
+    {
+        return mousePosition.x < Screen.width / 2 + downControlRct.width &&
+            mousePosition.x > Screen.width / 2 - downControlRct.width &&
+            mousePosition.y < downControlRct.height;
     }
 
 }

@@ -9,16 +9,23 @@ public class HudController : MonoBehaviour
 
     private Text score;
     private Vector3 orinalPosition;
+    private int currentScore;
+
 	// Use this for initialization
 	void Start () 
     {
         orinalPosition = player.transform.position;
         score = GetComponent<Text> ();
+        currentScore = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-		score.text = "Score: " +  (int)(orinalPosition.y - player.transform.position.y) / ScaleFactor;
+        if (currentScore != (int)(orinalPosition.y - player.transform.position.y) / ScaleFactor)
+        {
+            currentScore = (int)(orinalPosition.y - player.transform.position.y) / ScaleFactor;
+            score.text = "Score: " + currentScore;
+        }
 	}
 }
