@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ParachuteController.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="23" Column="18" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="20" Column="16" />
       <File FileName="Assets/Scripts/BulletController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/RockController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ShitController.cs" Line="1" Column="1" />
@@ -11,14 +11,15 @@
       <File FileName="Assets/Scripts/UIController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GameController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/CrowController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ParachuteController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
+        <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True" />
+            <Node name="Scripts" expanded="True">
+              <Node name="ParachuteController.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

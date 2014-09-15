@@ -26,6 +26,5 @@ public class BulletController : MonoBehaviour
         {
             rigidbody2D.collider2D.enabled = false;
         }
-
     }
 }

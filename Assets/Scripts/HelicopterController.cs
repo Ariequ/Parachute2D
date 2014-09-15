@@ -9,14 +9,20 @@ public class HelicopterController : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Parachute").transform;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        if (transform.position.y - player.position.y > 11.36/3)
-        {
-            Vector3 position = transform.position;
-            position.y -= 15f;
-            transform.position = position;
-        }
-      
+//	// Update is called once per frame
+//	void Update () {
+//        if (transform.position.y - player.position.y > 11.36/3)
+//        {
+//            Vector3 position = transform.position;
+//            position.y -= 15f;
+//            transform.position = position;
+//        }
+//	}
+
+	void OnBecameInvisible ()
+	{
+		Vector3 position = transform.position;
+		position.y -= 15;
+		transform.position = position;
 	}
 }

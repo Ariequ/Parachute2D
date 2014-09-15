@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("SpeedX", 0);
             Physics2D.gravity = new Vector2(0, gameController.downGravity);
         }
+
+		Debug.Log (rigidbody2D.velocity.y);
     }
 
     IEnumerator hideleft()
