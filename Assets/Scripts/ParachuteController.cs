@@ -24,10 +24,7 @@ public class ParachuteController : MonoBehaviour
     {
 		if (other.tag == "Enemy")
         {
-            Debug.Log(other.name);
-    
             currentIdleType = Mathf.Clamp(++currentIdleType, 1, 3);
-            Debug.Log(currentIdleType);
             animator.SetInteger(IDLE_TYPE, currentIdleType);
             gameController.normalGravity += -gameController.ironMeshGravity;
             gameController.downGravity += -gameController.ironMeshGravity;

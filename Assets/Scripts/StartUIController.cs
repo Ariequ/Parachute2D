@@ -2,12 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class HudController : MonoBehaviour 
+public class StartUIController : MonoBehaviour 
 {
     public GameObject player;
 	public int ScaleFactor = 7;
 
-    private Text score;
+    public Text score;
     private Vector3 orinalPosition;
     private int currentScore;
 
@@ -15,7 +15,6 @@ public class HudController : MonoBehaviour
 	void Start () 
     {
         orinalPosition = player.transform.position;
-        score = GetComponent<Text> ();
         currentScore = 0;
 	}
 	
@@ -25,7 +24,12 @@ public class HudController : MonoBehaviour
         if (currentScore != (int)(orinalPosition.y - player.transform.position.y) / ScaleFactor)
         {
             currentScore = (int)(orinalPosition.y - player.transform.position.y) / ScaleFactor;
-            score.text = "Score: " + currentScore;
+            score.text = "" + currentScore;
+
+            if (currentScore > PlayerPrefs.GetInt("Best Score"))
+            {
+                PlayerPrefs.SetInt("Best Score", currentScore);
+            }
         }
 	}
 }

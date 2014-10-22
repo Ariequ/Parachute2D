@@ -1,29 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ParachuteController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BulletController.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="20" Column="16" />
-      <File FileName="Assets/Scripts/BulletController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/RockController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ShitController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tags.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HudController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UIController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/StartUIController.cs" Line="35" Column="2" />
+      <File FileName="Assets/Scripts/EndUIController.cs" Line="10" Column="16" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="34" Column="1" />
+      <File FileName="Assets/Scripts/BulletController.cs" Line="27" Column="10" />
       <File FileName="Assets/Scripts/CrowController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ParachuteController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TankCotroller.cs" Line="40" Column="10" />
+      <File FileName="Assets/Scripts/ParachuteController.cs" Line="26" Column="10" />
+      <File FileName="Assets/Scripts/RockController.cs" Line="11" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="ParachuteController.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -19,7 +19,7 @@ public class CrowController : MonoBehaviour
     {
         enabled = false;
         start = transform.position;
-        target = new Vector3(transform.position.x + direction * 6, transform.position.y, transform.position.z);
+		target = new Vector3(transform.position.x, transform.position.y + 6, transform.position.z);
 
         journeyLength = Vector3.Distance(start, target);
     }

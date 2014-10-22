@@ -3,138 +3,143 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public float xSpeed = 5;
-    public float ySpeed = 5;
-    private Animator animator;
-    private float lastSpeedX;
     public GameObject right;
     public GameObject left;
+    private float moveX = 6.4f / 12;
+    private float gravityScale = 0.5f;
+    private float moveTime = 0.1f;
+    private Animator animator;
+    private float lastSpeedX;
     private float lastTouchTime = 0;
-
     public GameController gameController;
-
     public Rect downControlRct = new Rect (0, 0, 100, 100);
 
-    void Start()
+    void Start ()
     {
-		//test branch
-        animator = GetComponent<Animator>();
+        //test branch
+        animator = GetComponent<Animator> ();
     }
 
-    void Update()
+    void Update ()
     {
-        Vector2 v = rigidbody2D.velocity;
         Vector3 localScale = transform.localScale;
-        if (Input.GetKeyDown (KeyCode.RightArrow)) {
-            Debug.Log ("key down");
-            lastTouchTime = Time.time;
-            v.x = xSpeed;
-            rigidbody2D.velocity = v;
-            localScale.x = 1;
-            right.SetActive (true);
-            StartCoroutine (hideright ());
 
-            Physics2D.gravity = new Vector2 (0, gameController.normalGravity);
-        } else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-            Debug.Log ("key down");
-            v.x = -xSpeed;
+        if (Input.GetKeyDown (KeyCode.RightArrow))
+        {
             lastTouchTime = Time.time;
-            rigidbody2D.velocity = v;
+            localScale.x = 1;
+            left.SetActive (true);
+            StartCoroutine (hideleft ());
+            Physics2D.gravity = gravityScale * Physics2D.gravity;
+            iTween.MoveBy (gameObject, iTween.Hash ("x", moveX, "easeType", "easeOutExpo", "time", moveTime));
+        } else if (Input.GetKeyDown (KeyCode.LeftArrow))
+        {                     
+            lastTouchTime = Time.time;            
             localScale.x = -1;
             left.SetActive (true);
             StartCoroutine (hideleft ());
-            Physics2D.gravity = new Vector2 (0, gameController.normalGravity);
-        } else if (Input.GetKey(KeyCode.DownArrow) && gameController.currentEnergy > 0) {
+            Physics2D.gravity = gravityScale * Physics2D.gravity;
+            iTween.MoveBy (gameObject, iTween.Hash ("x", -moveX, "easeType", "easeOutExpo", "time", moveTime));
+
+        } else if (Input.GetKey (KeyCode.DownArrow) && gameController.currentEnergy > 0)
+        {
             lastTouchTime = Time.time;
             Physics2D.gravity = new Vector2 (0, gameController.speedGravity);
-            gameController.AddEnergy(-gameController.energyConsumeSpeed*Time.deltaTime);
+            gameController.AddEnergy (-gameController.energyConsumeSpeed * Time.deltaTime);
         }
 
-        if (Input.GetMouseButton (0) && inRect (Input.mousePosition) && gameController.currentEnergy > 0) {
+        if (Input.GetMouseButton (0) && inRect (Input.mousePosition) && gameController.currentEnergy > 0)
+        {
             lastTouchTime = Time.time;
             Physics2D.gravity = new Vector2 (0, gameController.speedGravity);
-            gameController.AddEnergy(-gameController.energyConsumeSpeed*Time.deltaTime);
-        }
-
-       else if (Input.GetMouseButtonDown(0))
+            gameController.AddEnergy (-gameController.energyConsumeSpeed * Time.deltaTime);
+        } else if (Input.GetMouseButtonDown (0))
         {
             lastTouchTime = Time.time;
 
             if (Input.mousePosition.x < Screen.width / 2)
             { 
-                v.x = -xSpeed;
-
-                rigidbody2D.velocity = v;
                 localScale.x = -1;
-                left.SetActive(true);
-                StartCoroutine(hideleft());
-                Physics2D.gravity = new Vector2(0, gameController.normalGravity);
-            }
-            else
+                left.SetActive (true);
+                StartCoroutine (hideleft ());
+                Physics2D.gravity = gravityScale * Physics2D.gravity;
+                iTween.MoveBy (gameObject, iTween.Hash ("x", -moveX, "easeType", "easeOutExpo", "time", moveTime));
+            } else
             {
-                v.x = xSpeed;
-                rigidbody2D.velocity = v;
+                iTween.MoveBy (gameObject, iTween.Hash ("x", moveX, "easeType", "easeOutExpo", "time", moveTime));
                 localScale.x = 1;
-                right.SetActive(true);
-                StartCoroutine(hideright());
-                Physics2D.gravity = new Vector2(0, gameController.normalGravity);
-           }      
+                right.SetActive (true);
+                StartCoroutine (hideright ());
+                Physics2D.gravity = gravityScale * Physics2D.gravity;
+            }      
         }
 
         transform.localScale = localScale;
 
-        if (Time.time - lastTouchTime <= 0.5)
+        if (transform.position.x > 2.7f)
         {
-            animator.SetFloat("SpeedX", 1);
-        } 
-        else
+            Vector3 temp = transform.position;
+            temp.x = 2.7f;
+            transform.position = temp;
+        }
+        else if(transform.position.x < - 2.7f)
         {
-            animator.SetFloat("SpeedX", 0);
-            Physics2D.gravity = new Vector2(0, gameController.downGravity);
+            Vector3 temp = transform.position;
+            temp.x = -2.7f;
+            transform.position = temp;
         }
 
-		Debug.Log (rigidbody2D.velocity.y);
+        if (Time.time - lastTouchTime <= moveTime * 2)
+        {
+            animator.SetFloat ("SpeedX", 1);
+        } else
+        {
+            animator.SetFloat ("SpeedX", 0);
+            Physics2D.gravity = new Vector2 (0, gameController.downGravity);
+        }
     }
 
-    IEnumerator hideleft()
+    IEnumerator hideleft ()
     {
-        yield return new WaitForSeconds(0.05f);
-        left.SetActive(false);
+        yield return new WaitForSeconds (0.05f);
+        left.SetActive (false);
     }
 
-    IEnumerator hideright()
+    IEnumerator hideright ()
     {
-        yield return new WaitForSeconds(0.05f);
-        right.SetActive(false);
+        yield return new WaitForSeconds (0.05f);
+        right.SetActive (false);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D (Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy") {
+        if (collision.gameObject.tag == "Enemy")
+        {
             animator.SetBool ("die", true);
 
             Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D> ();
             rigidbody.isKinematic = true;
 
             GameObject go = GameObject.FindGameObjectWithTag ("Parachute");
-            if (go != null) {
+            if (go != null)
+            {
                 go.SetActive (false);
             }
 
             iTween.ShakePosition (Camera.main.gameObject, iTween.Hash ("y", 0.3f, "time", 1.0f));
-        } 
-        else if (collision.gameObject.tag == "Energy") {
-            gameController.AddEnergy(10);
-            Destroy(collision.gameObject);
+        } else if (collision.gameObject.tag == "Energy")
+        {
+            gameController.AddEnergy (10);
+            Destroy (collision.gameObject);
         }
     }
 
-    public void OnDieAniamtionEnd()
+    public void OnDieAniamtionEnd ()
     {
-        GameObject.Find("GameController").SendMessage("EndGame");
+        GameObject.Find ("GameController").SendMessage ("EndGame");
     }
 
-    private bool inRect(Vector3 mousePosition)
+    private bool inRect (Vector3 mousePosition)
     {
         return mousePosition.x < Screen.width / 2 + downControlRct.width &&
             mousePosition.x > Screen.width / 2 - downControlRct.width &&

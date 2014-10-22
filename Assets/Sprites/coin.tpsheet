@@ -1,0 +1,22 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: coin.png (1200 x 400)
+# $TexturePacker:SmartUpdate:b001e07e51b5d8b346208d66f0da3124:6435f624c9f7f54d58e9820121aac8e9:06b9e8030fc9fb546e588ffbb332a690$
+#
+
+coin/0000;0;200;200;200;0.5;0.5
+coin/0001;200;200;200;200;0.5;0.5
+coin/0002;400;200;200;200;0.5;0.5
+coin/0003;600;200;200;200;0.5;0.5
+coin/0004;800;200;200;200;0.5;0.5
+coin/0005;1000;200;200;200;0.5;0.5
+coin/0006;0;0;200;200;0.5;0.5
+coin/0007;200;0;200;200;0.5;0.5
+coin/0008;400;0;200;200;0.5;0.5
+coin/0009;600;0;200;200;0.5;0.5
+coin/0010;800;0;200;200;0.5;0.5
+coin/0011;1000;0;200;200;0.5;0.5

@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
 
     public Image energyImage;
 
+    public CloudController cloudController;
+
 
 #if UNITY_IPHONE 
     private ADBannerView banner = null;
@@ -75,6 +77,8 @@ public class GameController : MonoBehaviour
         gameStart = true;
 
         obj.SetActive (false);
+
+        cloudController.SendMessage ("StartGame");
     }
 
     public void Replay()
