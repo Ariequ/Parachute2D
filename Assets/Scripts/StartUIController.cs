@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class StartUIController : MonoBehaviour 
 {
     public GameObject player;
-	public int ScaleFactor = 7;
+	private float ScaleFactor = 4.81f;
 
     public Text score;
     private Vector3 orinalPosition;
@@ -21,9 +21,9 @@ public class StartUIController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if (currentScore != (int)(orinalPosition.y - player.transform.position.y) / ScaleFactor)
+        if (currentScore != (int)((orinalPosition.y - player.transform.position.y) / ScaleFactor))
         {
-            currentScore = (int)(orinalPosition.y - player.transform.position.y) / ScaleFactor;
+            currentScore = (int)((orinalPosition.y - player.transform.position.y) / ScaleFactor);
             score.text = "" + currentScore;
 
             if (currentScore > PlayerPrefs.GetInt("Best Score"))

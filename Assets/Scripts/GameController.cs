@@ -14,9 +14,8 @@ public class GameController : MonoBehaviour
     private  PlayerController parachuteController;
     private bool gameStart;
 
-    public float downGravity = -30;
+    public float downGravity = -500f;
     public float normalGravity = -5;
-    public float speedGravity = - 50;
     public float ironMeshGravity = 5;
 
     public float totalEnergy = 100;
@@ -36,9 +35,8 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        UpdateEnergyImage ();
+//        UpdateEnergyImage ();
         endGameUI.SetActive (false);
-        Physics2D.gravity = new Vector2 (0, -10);
         gameStart = false;
         parachute = GameObject.FindGameObjectWithTag ("Parachute");
 
@@ -56,13 +54,13 @@ public class GameController : MonoBehaviour
 #endif
     }
 
-    void Update ()
-    {
-        if (gameStart && Time.time - lastGravityUpdateTime > gravityUpdateTime) {
-//            Physics2D.gravity += new Vector2 (0, -1);
-            lastGravityUpdateTime = Time.time;
-        }
-    }
+//    void Update ()
+//    {
+//        if (gameStart && Time.time - lastGravityUpdateTime > gravityUpdateTime) {
+////            Physics2D.gravity += new Vector2 (0, -1);
+//            lastGravityUpdateTime = Time.time;
+//        }
+//    }
     
     public void StartGame (GameObject obj)
     {
@@ -86,9 +84,10 @@ public class GameController : MonoBehaviour
         Application.LoadLevel (0);
     }
 
-    public void EndGame ()
+    public void EndGame (bool isWin)
     {
         endGameUI.SetActive (true);
+        endGameUI.GetComponent<EndUIController>().UpdateUI (isWin);
         parachute.SetActive (false);
         player.SetActive (false);
 
@@ -126,13 +125,13 @@ public class GameController : MonoBehaviour
     public void AddEnergy(float amount)
     {
         currentEnergy += amount;
-        UpdateEnergyImage ();
+//        UpdateEnergyImage ();
     }
 
-    public void UpdateEnergyImage()
-    {
-        energyImage.fillAmount = currentEnergy / totalEnergy;
-    }
+//    public void UpdateEnergyImage()
+//    {
+//        energyImage.fillAmount = currentEnergy / totalEnergy;
+//    }
 
     void OnDestroy ()
     {

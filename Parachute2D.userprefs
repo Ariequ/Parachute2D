@@ -1,15 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BulletController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
     <Files>
-      <File FileName="Assets/Scripts/StartUIController.cs" Line="35" Column="2" />
-      <File FileName="Assets/Scripts/EndUIController.cs" Line="10" Column="16" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="34" Column="1" />
-      <File FileName="Assets/Scripts/BulletController.cs" Line="27" Column="10" />
+      <File FileName="Assets/Scripts/StartUIController.cs" Line="11" Column="36" />
+      <File FileName="Assets/Scripts/EndUIController.cs" Line="21" Column="48" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="26" Column="30" />
+      <File FileName="Assets/Scripts/BulletController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/CrowController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/TankCotroller.cs" Line="40" Column="10" />
-      <File FileName="Assets/Scripts/ParachuteController.cs" Line="26" Column="10" />
-      <File FileName="Assets/Scripts/RockController.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/TankCotroller.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ParachuteController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/RockController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WinAreaController.cs" Line="8" Column="72" />
+      <File FileName="Assets/Scripts/ShitController.cs" Line="14" Column="1" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="105" Column="75" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

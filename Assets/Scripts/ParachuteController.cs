@@ -28,11 +28,6 @@ public class ParachuteController : MonoBehaviour
             animator.SetInteger(IDLE_TYPE, currentIdleType);
             gameController.normalGravity += -gameController.ironMeshGravity;
             gameController.downGravity += -gameController.ironMeshGravity;
-//            Physics2D.gravity += new Vector2(0, -5);
-//			iTween.ShakePosition(Camera.main.gameObject,iTween.Hash("y",0.1f,"time",0.1f));
-
-//            screenEffect.SetActive(true);
-//            StartCoroutine(hideScreenEffect());
         }
     }
 
