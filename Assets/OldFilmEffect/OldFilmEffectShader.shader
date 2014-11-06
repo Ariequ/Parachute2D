@@ -36,7 +36,7 @@
 			fixed _RandomValue;
 			
 			fixed4 frag (v2f_img i) : COLOR {
-				half2 renderTexUV = half2(i.uv.x, i.uv.y + (_RandomValue * _SinTime.z * 0.005));
+				half2 renderTexUV = half2(i.uv.x, i.uv.y + (_RandomValue * _SinTime.z * 0.001));
 				fixed4 renderTex = tex2D(_MainTex, renderTexUV);
 				
 				// Get teh pixed from the Vignette Texture
