@@ -36,4 +36,9 @@ public class ParachuteController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         screenEffect.SetActive(false);
     }
+
+    public void Reset()
+    {
+        animator.SetInteger(IDLE_TYPE, 1);
+    }
 }

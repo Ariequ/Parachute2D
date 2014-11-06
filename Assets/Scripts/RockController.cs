@@ -5,6 +5,6 @@ public class RockController : MonoBehaviour
 {
     void OnBecameInvisible ()
     {
-        Destroy (gameObject);
+//        Destroy (gameObject);
     }
 }

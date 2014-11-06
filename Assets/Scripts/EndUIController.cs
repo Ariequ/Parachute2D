@@ -25,7 +25,6 @@ public class EndUIController : MonoBehaviour
 
 	void OnEnable()
 	{
-		Debug.Log("on enable");
 		RectTransform rect = score.GetComponent<RectTransform>();
 		rect.anchoredPosition = new Vector2(0, -181);
 	}

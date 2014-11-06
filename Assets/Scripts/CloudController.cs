@@ -29,4 +29,10 @@ public class CloudController : MonoBehaviour
         startTime = Time.time;
         gameStarted = true;
     }
+
+    public void Reset()
+    {
+        gameStarted = false;
+        transform.localPosition = startPosition;
+    }
 }

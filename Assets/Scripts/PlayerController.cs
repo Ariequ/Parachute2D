@@ -124,9 +124,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool ("die", true);
 
-            Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D> ();
-            rigidbody.isKinematic = true;
-
             GameObject go = GameObject.FindGameObjectWithTag ("Parachute");
             if (go != null)
             {
