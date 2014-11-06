@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     private GameObject parachute;
     private GameObject player;
     private  PlayerController parachuteController;
-    private bool gameStart;
 
     public float downGravity = -500f;
     public float normalGravity = -5;
@@ -29,15 +28,15 @@ public class GameController : MonoBehaviour
 
 #if UNITY_IPHONE 
     private ADBannerView banner = null;
+	private bool adLoaded = false;
 #endif
-    private bool adLoaded = false;
+   
 
     // Use this for initialization
     void Start ()
     {
 //        UpdateEnergyImage ();
         endGameUI.SetActive (false);
-        gameStart = false;
         parachute = GameObject.FindGameObjectWithTag ("Parachute");
 
         player = GameObject.FindGameObjectWithTag ("Pilot");
@@ -71,8 +70,6 @@ public class GameController : MonoBehaviour
         Physics2D.gravity = new Vector2 (0, downGravity);
 
         parachuteController.enabled = true;
-
-        gameStart = true;
 
         obj.SetActive (false);
 
@@ -117,7 +114,9 @@ public class GameController : MonoBehaviour
     
     void OnBannerLoaded ()
     {
+		#if UNITY_IPHONE 
         adLoaded = true;
+#endif
         Debug.Log ("Loaded!\n");
 
     }

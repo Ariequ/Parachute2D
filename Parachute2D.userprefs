@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/OldFilmEffect/OldFilmEffectShader.shader">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
     <Files>
-      <File FileName="Assets/Scripts/EndUIController.cs" Line="33" Column="1" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="15" Column="1" />
+      <File FileName="Assets/Scripts/EndUIController.cs" Line="1" Column="1" />
       <File FileName="Assets/OldFilmEffect/OldFilmEffect.cs" Line="1" Column="1" />
       <File FileName="Assets/OldFilmEffect/OldFilmEffectShader.shader" Line="74" Column="4" />
     </Files>
