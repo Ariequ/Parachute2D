@@ -6,6 +6,7 @@ public class EndUIController : MonoBehaviour
 {
     public Text bestScore;
     public Text WinText;
+	public Text score;
 
     // Use this for initialization
     void Update ()
@@ -21,4 +22,11 @@ public class EndUIController : MonoBehaviour
             WinText.gameObject.SetActive(true);
         }
     }
+
+	void OnEnable()
+	{
+		Debug.Log("on enable");
+		RectTransform rect = score.GetComponent<RectTransform>();
+		rect.anchoredPosition = new Vector2(0, -181);
+	}
 }
