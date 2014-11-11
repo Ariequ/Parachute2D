@@ -11,6 +11,7 @@ public class StartUIController : MonoBehaviour
     private GameObject title2;
 	private Vector3 orinalPosition;
 	private int currentScore;
+    private bool gameStarted;
 
 	// Use this for initialization
 	void Start ()
@@ -18,7 +19,7 @@ public class StartUIController : MonoBehaviour
 		Debug.Log ("start");
 		orinalPosition = player.transform.position;
 		currentScore = 0;
-
+        gameStarted = false;
 		score = GameObject.Find ("Score").GetComponent<Text> ();
 		title1 = GameObject.Find ("Title1");
 		title2 = GameObject.Find ("Title2");
@@ -31,7 +32,7 @@ public class StartUIController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (currentScore != (int)((orinalPosition.y - player.transform.position.y) / ScaleFactor) && score.enabled) {
+        if (currentScore != (int)((orinalPosition.y - player.transform.position.y) / ScaleFactor) && gameStarted) {
 			currentScore = (int)((orinalPosition.y - player.transform.position.y) / ScaleFactor);
 			score.text = "" + currentScore;
 
@@ -44,6 +45,7 @@ public class StartUIController : MonoBehaviour
 	public void OnGameStart ()
 	{
 		Debug.Log ("OnGameStart");
+        gameStarted = true;
 
 		if (title1 != null) {
             title1.SetActive(false);
