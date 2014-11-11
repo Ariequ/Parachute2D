@@ -39,7 +39,6 @@ public class ParachuteController : MonoBehaviour
 
     public void Reset()
     {
-        currentIdleType = 1;
         animator.SetInteger(IDLE_TYPE, 1);
     }
 }

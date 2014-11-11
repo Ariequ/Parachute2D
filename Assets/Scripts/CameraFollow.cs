@@ -1,33 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : MonoBehaviour 
 {
 	private Transform player;		// Reference to the player's transform.
-	public float offsetY;
-	private float startTime = 0;
+    public float offsetY;
 
 	void Awake ()
 	{
 		// Setting up the reference.
-		player = GameObject.FindGameObjectWithTag ("Parachute").transform;
-		GameController.gameStart += OnGameStart;
-		startTime = float.MaxValue;
+		player = GameObject.FindGameObjectWithTag("Parachute").transform;
 	}
 
 	void Update ()
 	{
-		if (startTime < float.MaxValue) {
-			Vector3 target = transform.position;
-			target.y = Mathf.Lerp (player.position.y, player.position.y + offsetY, Time.time - startTime);
-			transform.position = target;// new Vector3(transform.position.x, player.position.y + offsetY, transform.position.z);
-		}
-	}
-
-	private void OnGameStart ()
-	{
-		offsetY = -3.5f;
-		startTime = Time.time;
+        transform.position = new Vector3(transform.position.x, player.position.y + offsetY, transform.position.z);
 	}
 
 }
