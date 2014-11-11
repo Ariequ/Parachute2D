@@ -32,6 +32,13 @@ public class GameController : MonoBehaviour
     private Vector3 originPlayerPosition;
     private Vector3 originParachutePosition;
 
+    private TankCotroller[] trankControllers;
+
+    public GameObject level;
+
+	public delegate void OnGameStart();
+
+	public static event OnGameStart gameStart;
 
 #if UNITY_IPHONE 
     private ADBannerView banner = null;
@@ -57,6 +64,8 @@ public class GameController : MonoBehaviour
         originPlayerPosition = player.transform.position;
         originParachutePosition = parachute.transform.position;
 
+        trankControllers = level.GetComponentsInChildren<TankCotroller> ();
+
 
 #if UNITY_IPHONE 
         banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
@@ -79,6 +88,9 @@ public class GameController : MonoBehaviour
 //        if (uiController.label1.text == "TRY AGAIN") {
 //            Application.LoadLevel (0);
 //        }
+
+		Debug.Log("=============");
+
         downGravity = -40f;
         Physics2D.gravity = new Vector2 (0, downGravity);
 
@@ -90,35 +102,41 @@ public class GameController : MonoBehaviour
 
         recorder1.startRecord ();
         recorder2.startRecord ();
+
+		gameStart();
     }
 
     public void Replay ()
     {
         Application.LoadLevel (0);
-        return;
 
-        #if UNITY_IPHONE 
-            banner.visible = false;
-        #endif
-
-        RectTransform rect = scoreText.GetComponent<RectTransform> ();
-        rect.anchoredPosition = new Vector2 (0, -53);
-
-        parachute.SetActive (true);
-        player.SetActive (true);
-        endGameUI.SetActive (false);
-        Physics2D.gravity = new Vector2 (0, 0);
-        playerController.enabled = false;
-
-        recorder1.backPlayRecord ();
-        recorder2.backPlayRecord ();
+//        #if UNITY_IPHONE 
+//            banner.visible = false;
+//        #endif
+//
+//        RectTransform rect = scoreText.GetComponent<RectTransform> ();
+//        rect.anchoredPosition = new Vector2 (0, -53);
+//
+//        parachute.SetActive (true);
+//        player.SetActive (true);
+//        endGameUI.SetActive (false);
+//        Physics2D.gravity = new Vector2 (0, 0);
+//        playerController.enabled = false;
+//
+//        recorder2.backPlayRecord ();
+//        recorder1.backPlayRecord ();
     }
 
     public void recordPlayFinish ()
     {
         startButton.SetActive (true);
+
         Rigidbody2D rigidbody = player.GetComponent<Rigidbody2D> ();
         rigidbody.isKinematic = false;
+
+        Rigidbody2D rigidbody1 = parachute.GetComponent<Rigidbody2D> ();
+        rigidbody1.isKinematic = false;
+
         parachuteController.Reset ();
         cloudController.Reset ();
 
@@ -127,6 +145,11 @@ public class GameController : MonoBehaviour
 
         parachute.transform.rotation = Quaternion.identity;
         player.transform.rotation = Quaternion.identity;
+
+        for (int i = 0; i < trankControllers.Length; i ++)
+        {
+            trankControllers[i].Reset();
+        }
     }
 
     public void EndGame (bool isWin)
@@ -136,6 +159,9 @@ public class GameController : MonoBehaviour
 
         Rigidbody2D rigidbody = player.GetComponent<Rigidbody2D> ();
         rigidbody.isKinematic = true;
+
+        Rigidbody2D rigidbody1 = parachute.GetComponent<Rigidbody2D> ();
+        rigidbody1.isKinematic = true;
 
         parachute.SetActive (false);
         player.SetActive (false);
@@ -196,5 +222,7 @@ public class GameController : MonoBehaviour
         banner.visible = false;
         banner = null;
 #endif
+
+		gameStart = null;
     }
 }

@@ -39,4 +39,9 @@ public class TankCotroller : MonoBehaviour
             animator.SetBool ("onFire", true);
         }
     }
+
+    public void Reset()
+    {
+        fired = false;
+    }
 }
