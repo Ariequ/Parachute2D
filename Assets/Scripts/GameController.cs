@@ -24,8 +24,8 @@ public class GameController : MonoBehaviour
     public Image energyImage;
     public CloudController cloudController;
   
-    public Recorder recorder1;
-    public Recorder recorder2;
+//    public Recorder recorder1;
+//    public Recorder recorder2;
     public GameObject startButton;
     public Text scoreText;
 
@@ -98,8 +98,8 @@ public class GameController : MonoBehaviour
 
         cloudController.SendMessage ("StartGame");
 
-        recorder1.startRecord ();
-        recorder2.startRecord ();
+//        recorder1.startRecord ();
+//        recorder2.startRecord ();
 
 		gameStart();
     }
@@ -166,9 +166,9 @@ public class GameController : MonoBehaviour
 //        player.SetActive (false);
 
 
-
-        recorder1.endRecord ();
-        recorder2.endRecord ();
+//
+//        recorder1.endRecord ();
+//        recorder2.endRecord ();
 
 #if UNITY_IPHONE 
         if (adLoaded)
