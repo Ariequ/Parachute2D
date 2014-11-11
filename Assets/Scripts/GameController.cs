@@ -94,7 +94,8 @@ public class GameController : MonoBehaviour
 
     public void Replay ()
     {
-//        Application.LoadLevel (0);
+        Application.LoadLevel (0);
+        return;
 
         #if UNITY_IPHONE 
             banner.visible = false;
