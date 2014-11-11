@@ -15,7 +15,6 @@ public class StartUIController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log ("start");
 		orinalPosition = player.transform.position;
 		currentScore = 0;
 
@@ -43,8 +42,6 @@ public class StartUIController : MonoBehaviour
 
 	private void OnGameStart ()
 	{
-		Debug.Log ("OnGameStart");
-
 		if (title1 != null) {
 			title1.enabled = false;
 		}

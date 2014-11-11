@@ -89,8 +89,6 @@ public class GameController : MonoBehaviour
 //            Application.LoadLevel (0);
 //        }
 
-		Debug.Log("=============");
-
         downGravity = -40f;
         Physics2D.gravity = new Vector2 (0, downGravity);
 
