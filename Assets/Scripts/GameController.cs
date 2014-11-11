@@ -36,6 +36,9 @@ public class GameController : MonoBehaviour
 
     public GameObject level;
 
+	public delegate void OnGameStart();
+
+	public static event OnGameStart gameStart;
 
 #if UNITY_IPHONE 
     private ADBannerView banner = null;
@@ -85,6 +88,9 @@ public class GameController : MonoBehaviour
 //        if (uiController.label1.text == "TRY AGAIN") {
 //            Application.LoadLevel (0);
 //        }
+
+		Debug.Log("=============");
+
         downGravity = -40f;
         Physics2D.gravity = new Vector2 (0, downGravity);
 
@@ -96,27 +102,29 @@ public class GameController : MonoBehaviour
 
         recorder1.startRecord ();
         recorder2.startRecord ();
+
+		gameStart();
     }
 
     public void Replay ()
     {
-//        Application.LoadLevel (0);
+        Application.LoadLevel (0);
 
-        #if UNITY_IPHONE 
-            banner.visible = false;
-        #endif
-
-        RectTransform rect = scoreText.GetComponent<RectTransform> ();
-        rect.anchoredPosition = new Vector2 (0, -53);
-
-        parachute.SetActive (true);
-        player.SetActive (true);
-        endGameUI.SetActive (false);
-        Physics2D.gravity = new Vector2 (0, 0);
-        playerController.enabled = false;
-
-        recorder2.backPlayRecord ();
-        recorder1.backPlayRecord ();
+//        #if UNITY_IPHONE 
+//            banner.visible = false;
+//        #endif
+//
+//        RectTransform rect = scoreText.GetComponent<RectTransform> ();
+//        rect.anchoredPosition = new Vector2 (0, -53);
+//
+//        parachute.SetActive (true);
+//        player.SetActive (true);
+//        endGameUI.SetActive (false);
+//        Physics2D.gravity = new Vector2 (0, 0);
+//        playerController.enabled = false;
+//
+//        recorder2.backPlayRecord ();
+//        recorder1.backPlayRecord ();
     }
 
     public void recordPlayFinish ()
@@ -214,5 +222,7 @@ public class GameController : MonoBehaviour
         banner.visible = false;
         banner = null;
 #endif
+
+		gameStart = null;
     }
 }
