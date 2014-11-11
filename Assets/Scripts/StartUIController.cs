@@ -7,8 +7,8 @@ public class StartUIController : MonoBehaviour
 	public GameObject player;
 	private float ScaleFactor = 4.81f;
 	private Text score;
-	private Text title1;
-	private Text title2;
+	private GameObject title1;
+    private GameObject title2;
 	private Vector3 orinalPosition;
 	private int currentScore;
 
@@ -20,12 +20,12 @@ public class StartUIController : MonoBehaviour
 		currentScore = 0;
 
 		score = GameObject.Find ("Score").GetComponent<Text> ();
-		title1 = GameObject.Find ("Title1").GetComponent<Text> ();
-		title2 = GameObject.Find ("Title2").GetComponent<Text> ();
+		title1 = GameObject.Find ("Title1");
+		title2 = GameObject.Find ("Title2");
 
 		score.enabled = false;
 
-		GameController.gameStart += OnGameStart;
+//		GameController.gameStart += OnGameStart;
 	}
 	
 	// Update is called once per frame
@@ -41,16 +41,16 @@ public class StartUIController : MonoBehaviour
 		}
 	}
 
-	private void OnGameStart ()
+	public void OnGameStart ()
 	{
 		Debug.Log ("OnGameStart");
 
 		if (title1 != null) {
-			title1.enabled = false;
+            title1.SetActive(false);
 		}
 
 		if (title2 != null) {
-			title2.enabled = false;
+            title2.SetActive(false);
 		}
 
 		if (score != null) {

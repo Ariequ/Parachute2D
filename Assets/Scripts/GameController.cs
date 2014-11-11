@@ -24,8 +24,8 @@ public class GameController : MonoBehaviour
     public Image energyImage;
     public CloudController cloudController;
   
-    public Recorder recorder1;
-    public Recorder recorder2;
+//    public Recorder recorder1;
+//    public Recorder recorder2;
     public GameObject startButton;
     public Text scoreText;
 
@@ -39,6 +39,9 @@ public class GameController : MonoBehaviour
 	public delegate void OnGameStart();
 
 	public static event OnGameStart gameStart;
+
+    public StartUIController startUI;
+    public CameraFollow cameraFollow;
 
 #if UNITY_IPHONE 
     private ADBannerView banner = null;
@@ -67,12 +70,12 @@ public class GameController : MonoBehaviour
         trankControllers = level.GetComponentsInChildren<TankCotroller> ();
 
 
-#if UNITY_IPHONE 
-        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
-        ADBannerView.onBannerWasClicked += OnBannerClicked;
-        ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
-        banner.visible = false;
-#endif
+//#if UNITY_IPHONE 
+//        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
+//        ADBannerView.onBannerWasClicked += OnBannerClicked;
+//        ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
+//        banner.visible = false;
+//#endif
     }
 
 //    void Update ()
@@ -100,10 +103,14 @@ public class GameController : MonoBehaviour
 
         cloudController.SendMessage ("StartGame");
 
-        recorder1.startRecord ();
-        recorder2.startRecord ();
+//        recorder1.startRecord ();
+//        recorder2.startRecord ();
 
-		gameStart();
+//		gameStart();
+
+        Debug.Log("call OnGameStart");
+        startUI.OnGameStart();
+        cameraFollow.OnGameStart();
     }
 
     public void Replay ()
@@ -169,8 +176,8 @@ public class GameController : MonoBehaviour
 
 
 
-        recorder1.endRecord ();
-        recorder2.endRecord ();
+//        recorder1.endRecord ();
+//        recorder2.endRecord ();
 
 #if UNITY_IPHONE 
         if (adLoaded)
@@ -219,7 +226,7 @@ public class GameController : MonoBehaviour
     void OnDestroy ()
     {
 #if UNITY_IPHONE 
-        banner.visible = false;
+//        banner.visible = false;
         banner = null;
 #endif
 

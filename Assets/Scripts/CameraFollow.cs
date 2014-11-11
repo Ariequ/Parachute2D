@@ -11,12 +11,14 @@ public class CameraFollow : MonoBehaviour
 	{
 		// Setting up the reference.
 		player = GameObject.FindGameObjectWithTag ("Parachute").transform;
-		GameController.gameStart += OnGameStart;
+//		GameController.gameStart += OnGameStart;
 		startTime = float.MaxValue;
 	}
 
 	void Update ()
 	{
+//        transform.position = new Vector3(transform.position.x, player.position.y + offsetY, transform.position.z);
+//        return;
 		if (startTime < float.MaxValue) {
 			Vector3 target = transform.position;
 			target.y = Mathf.Lerp (player.position.y, player.position.y + offsetY, Time.time - startTime);
@@ -24,7 +26,7 @@ public class CameraFollow : MonoBehaviour
 		}
 	}
 
-	private void OnGameStart ()
+	public void OnGameStart ()
 	{
 		offsetY = -3.5f;
 		startTime = Time.time;
