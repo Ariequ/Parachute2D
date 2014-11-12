@@ -24,7 +24,7 @@ public class StartUIController : MonoBehaviour
 		title1 = GameObject.Find ("Title1");
 		title2 = GameObject.Find ("Title2");
 
-		score.enabled = false;
+		score.text = "";
 
 //		GameController.gameStart += OnGameStart;
 	}
@@ -55,8 +55,10 @@ public class StartUIController : MonoBehaviour
             title2.SetActive(false);
 		}
 
-		if (score != null) {
-			score.enabled = true;
-		}
+		score.text = "0";
+
+//		if (score != null) {
+//			score.enabled = true;
+//		}
 	}
 }

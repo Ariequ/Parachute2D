@@ -92,9 +92,6 @@ public class GameController : MonoBehaviour
 //            Application.LoadLevel (0);
 //        }
 
-		Debug.Log("=============");
-
-        Debug.Log("StartGame call time: " + Time.time);
 
         downGravity = -40f;
         Physics2D.gravity = new Vector2 (0, downGravity);
@@ -113,8 +110,6 @@ public class GameController : MonoBehaviour
         Debug.Log("call OnGameStart");
         startUI.OnGameStart();
         cameraFollow.OnGameStart();
-
-        Debug.Log("StartGame end time: " + Time.time);
     }
 
     public void Replay ()
