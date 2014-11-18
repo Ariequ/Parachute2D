@@ -17,13 +17,15 @@ public class CameraFollow : MonoBehaviour
 
 	void Update ()
 	{
-//        transform.position = new Vector3(transform.position.x, player.position.y + offsetY, transform.position.z);
-//        return;
 		if (startTime < float.MaxValue) {
 			Vector3 target = transform.position;
 			target.y = Mathf.Lerp (player.position.y, player.position.y + offsetY, Time.time - startTime);
 			transform.position = target;// new Vector3(transform.position.x, player.position.y + offsetY, transform.position.z);
 		}
+        else
+        {
+            transform.Translate(Vector3.down*Time.deltaTime * 3);
+        }
 	}
 
 	public void OnGameStart ()

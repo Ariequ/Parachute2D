@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameController gameController;
     public Rect downControlRct = new Rect (0, 0, 100, 100);
 
+    private bool firstOperate;
+
     void Start ()
     {
         //test branch
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown (KeyCode.RightArrow))
         {
+            onOperate();
             lastTouchTime = Time.time;
             localScale.x = 1;
             left.SetActive (true);
@@ -35,7 +38,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         if (Input.GetKeyDown (KeyCode.LeftArrow))
-        {                     
+        {
+            onOperate();
             lastTouchTime = Time.time;            
             localScale.x = -1;
             left.SetActive (true);
@@ -76,7 +80,9 @@ public class PlayerController : MonoBehaviour
                 right.SetActive (true);
                 StartCoroutine (hideright ());
                 Physics2D.gravity = gravityScale * Physics2D.gravity;
-            }      
+            }  
+
+            onOperate();
         }
 
         transform.localScale = localScale;
@@ -103,6 +109,16 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetFloat ("SpeedX", 0);
             Physics2D.gravity = new Vector2 (0, gameController.downGravity);
+        }
+    }
+
+    private void onOperate()
+    {
+        if (!firstOperate)
+        {
+            firstOperate = true;
+            StartUIController controller = GameObject.Find("StartUI").GetComponent<StartUIController>();
+            controller.HideGuide();
         }
     }
 

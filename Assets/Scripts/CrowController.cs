@@ -14,6 +14,7 @@ public class CrowController : MonoBehaviour
     private Vector3 target;
     private Vector3 start;
 
+
     // Use this for initialization
     void Start()
     {
@@ -22,6 +23,7 @@ public class CrowController : MonoBehaviour
 		target = new Vector3(transform.position.x, transform.position.y + 6, transform.position.z);
 
         journeyLength = Vector3.Distance(start, target);
+
     }
     
     // Update is called once per frame

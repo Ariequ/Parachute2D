@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class StartUIController : MonoBehaviour
 {
 	public GameObject player;
+    public GameObject guide;
 	private float ScaleFactor = 4.81f;
 	private Text score;
-	private GameObject title1;
-    private GameObject title2;
+	private GameObject logo;
 	private Vector3 orinalPosition;
 	private int currentScore;
     private bool gameStarted;
@@ -16,15 +16,15 @@ public class StartUIController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log ("start");
 		orinalPosition = player.transform.position;
 		currentScore = 0;
         gameStarted = false;
 		score = GameObject.Find ("Score").GetComponent<Text> ();
-		title1 = GameObject.Find ("Title1");
-		title2 = GameObject.Find ("Title2");
+        logo = GameObject.Find ("logo");
 
 		score.text = "";
+
+        guide.SetActive(false);
 
 //		GameController.gameStart += OnGameStart;
 	}
@@ -44,21 +44,21 @@ public class StartUIController : MonoBehaviour
 
 	public void OnGameStart ()
 	{
-		Debug.Log ("OnGameStart");
         gameStarted = true;
 
-		if (title1 != null) {
-            title1.SetActive(false);
-		}
-
-		if (title2 != null) {
-            title2.SetActive(false);
-		}
+        logo.SetActive(false);
 
 		score.text = "0";
+
+        guide.SetActive(true);
 
 //		if (score != null) {
 //			score.enabled = true;
 //		}
 	}
+
+    public void HideGuide()
+    {
+        guide.SetActive(false);
+    }
 }

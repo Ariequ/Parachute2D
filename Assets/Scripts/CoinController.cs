@@ -9,10 +9,12 @@ public class CoinController : MonoBehaviour
     void Start ()
     {
         animator = gameObject.GetComponent<Animator> ();
+        animator.speed = Random.value;
     }
     
     void OnTriggerEnter2D (Collider2D collision)
     {
+        animator.speed = 1;
         animator.SetBool ("MeetPilot", true);
     }
 

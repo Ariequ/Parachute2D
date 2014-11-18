@@ -7,11 +7,12 @@ public class GameController : MonoBehaviour
     public int gizmosCount;
     public float gravityUpdateTime = 1f;
     public GameObject endGameUI;
-//    public GameObject player;
+    public GameObject playerGameObject;
 
     private float lastGravityUpdateTime;
     private GameObject parachute;
     private GameObject player;
+
     private  PlayerController playerController;
     private ParachuteController parachuteController;
 
@@ -69,6 +70,8 @@ public class GameController : MonoBehaviour
 
         trankControllers = level.GetComponentsInChildren<TankCotroller> ();
 
+        playerGameObject.SetActive(false);
+
 
 //#if UNITY_IPHONE 
 //        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
@@ -91,7 +94,7 @@ public class GameController : MonoBehaviour
 //        if (uiController.label1.text == "TRY AGAIN") {
 //            Application.LoadLevel (0);
 //        }
-
+        playerGameObject.SetActive(true);
 
         downGravity = -40f;
         Physics2D.gravity = new Vector2 (0, downGravity);
@@ -107,7 +110,6 @@ public class GameController : MonoBehaviour
 
 //		gameStart();
 
-        Debug.Log("call OnGameStart");
         startUI.OnGameStart();
         cameraFollow.OnGameStart();
     }

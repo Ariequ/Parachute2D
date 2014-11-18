@@ -56,7 +56,7 @@
 				fixed lum = dot(fixed3(0.299, 0.587, 0.114), renderTex.rgb);
 				
 				// Add the constant calor to the lum values
-				fixed4 finalColor = lum + lerp(_SepiaColor, _SepiaColor + fixed4(0.02f, 0.02f, 0.02f, 0.02f), _RandomValue);
+				fixed4 finalColor = lum + _SepiaColor;// lerp(_SepiaColor, _SepiaColor + fixed4(0.01f, 0.01f, 0.01f, 0.01f), _RandomValue);
 				
 				// Create a constant white color we can use to adjust opacity of effects
 				fixed3 constantWhite = fixed3(1, 1, 1);
