@@ -9,6 +9,11 @@ public class EndUIController : MonoBehaviour
 	public Text score;
 	public Image loseImage;
 
+    void Awake()
+    {
+        WinText.text = "";
+    }
+
     // Use this for initialization
     void Update ()
     {
@@ -22,7 +27,7 @@ public class EndUIController : MonoBehaviour
         if (isWin)
         {
             bestScore.gameObject.SetActive(false);
-            WinText.gameObject.SetActive(true);
+            WinText.text = "YOU WIN !";
 			loseImage.enabled = false;
         }
     }

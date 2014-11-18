@@ -73,12 +73,12 @@ public class GameController : MonoBehaviour
         playerGameObject.SetActive(false);
 
 
-//#if UNITY_IPHONE 
-//        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
-//        ADBannerView.onBannerWasClicked += OnBannerClicked;
-//        ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
-//        banner.visible = false;
-//#endif
+#if UNITY_IPHONE 
+        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
+        ADBannerView.onBannerWasClicked += OnBannerClicked;
+        ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
+        banner.visible = false;
+#endif
     }
 
 //    void Update ()
