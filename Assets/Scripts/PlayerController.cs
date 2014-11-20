@@ -3,6 +3,15 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+	[HideInInspector]
+	public float downGravity = -100f;
+
+	[HideInInspector]
+	public float normalGravity = -5;
+
+	[HideInInspector]
+	public float ironMeshGravity = 5;
+
 	private GameObject right;
 	private GameObject left;
 	private float moveX = 6.4f / 12;
@@ -11,10 +20,12 @@ public class PlayerController : MonoBehaviour
 	private Animator animator;
 	private float lastSpeedX;
 	private float lastTouchTime = 0;
-	private GameController gameController;
+
 	private bool firstOperate;
 	public bool showScreenEffect = true;
 	private float startTime;
+
+	private Vector2 m_gravity;
 	
 	enum Direction
 	{
@@ -25,7 +36,7 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		animator = GetComponent<Animator>();
-		gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
 		left = GameObject.Find("left");
 		right = GameObject.Find("right");
 
@@ -38,6 +49,9 @@ public class PlayerController : MonoBehaviour
 		{
 			right.SetActive(false);
 		}
+
+		downGravity = -40f;
+		m_gravity = new Vector2(downGravity, 0);
 	}
 
 	void Update()
@@ -50,6 +64,14 @@ public class PlayerController : MonoBehaviour
 	public void StartRecord()
 	{
 		startTime = Time.time;
+	}
+
+	public Vector2 Gravity
+	{
+		get
+		{
+			return m_gravity;
+		}
 	}
 
 	private void CheckOperate()
@@ -103,14 +125,16 @@ public class PlayerController : MonoBehaviour
 		else
 		{
 			animator.SetFloat("SpeedX", 0);
-			Physics2D.gravity = new Vector2(0, gameController.downGravity);
+//			Physics2D.gravity = new Vector2(0, gameController.downGravity);
+			m_gravity = new Vector2(0, downGravity);
 		}
 	}
 	
 	private void Move(Direction direction, bool needRecord = true)
 	{
 		lastTouchTime = Time.time;
-		Physics2D.gravity = gravityScale * Physics2D.gravity;
+//		Physics2D.gravity = gravityScale * Physics2D.gravity;
+		m_gravity = gravityScale * m_gravity;
 		iTween.MoveBy(gameObject, iTween.Hash("x", moveX * (int)direction, "easeType", "easeOutExpo", "time", moveTime));
 		transform.localScale = new Vector3((int)direction, 1, 1);
 
@@ -190,5 +214,10 @@ public class PlayerController : MonoBehaviour
 		{
 			Move(Direction.RIGHT, false);
 		}
+	}
+
+	void FixedUpdate()
+	{
+		rigidbody2D.AddForce(m_gravity, ForceMode2D.Impulse);
 	}
 }

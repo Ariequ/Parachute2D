@@ -15,10 +15,7 @@ public class GameController : MonoBehaviour
 
     private  PlayerController playerController;
     private ParachuteController parachuteController;
-
-    public float downGravity = -100f;
-    public float normalGravity = -5;
-    public float ironMeshGravity = 5;
+	
     public float totalEnergy = 100;
     public float currentEnergy = 0;
     public float energyConsumeSpeed = 1;
@@ -80,8 +77,8 @@ public class GameController : MonoBehaviour
     {
         playerGameObject.SetActive(true);
 
-        downGravity = -40f;
-        Physics2D.gravity = new Vector2 (0, downGravity);
+        
+//        Physics2D.gravity = new Vector2 (0, downGravity);
 
         playerController.enabled = true;
 
