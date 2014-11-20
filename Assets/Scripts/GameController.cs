@@ -25,8 +25,6 @@ public class GameController : MonoBehaviour
     public Image energyImage;
     public CloudController cloudController;
   
-//    public Recorder recorder1;
-//    public Recorder recorder2;
     public GameObject startButton;
     public Text scoreText;
 
@@ -53,10 +51,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-//        UpdateEnergyImage ();
         endGameUI.SetActive (false);
-
-//        player = GameObject.Find ("Player");
         parachute = GameObject.FindGameObjectWithTag ("Parachute");
         parachuteController = parachute.GetComponent<ParachuteController> ();
         player = GameObject.FindGameObjectWithTag ("Pilot");
@@ -80,20 +75,9 @@ public class GameController : MonoBehaviour
         banner.visible = false;
 #endif
     }
-
-//    void Update ()
-//    {
-//        if (gameStart && Time.time - lastGravityUpdateTime > gravityUpdateTime) {
-////            Physics2D.gravity += new Vector2 (0, -1);
-//            lastGravityUpdateTime = Time.time;
-//        }
-//    }
     
     public void StartGame (GameObject obj)
     {
-//        if (uiController.label1.text == "TRY AGAIN") {
-//            Application.LoadLevel (0);
-//        }
         playerGameObject.SetActive(true);
 
         downGravity = -40f;
@@ -105,34 +89,16 @@ public class GameController : MonoBehaviour
 
         cloudController.SendMessage ("StartGame");
 
-//        recorder1.startRecord ();
-//        recorder2.startRecord ();
-
-//		gameStart();
-
         startUI.OnGameStart();
         cameraFollow.OnGameStart();
+
+		playerController.StartRecord();
+		RecoderManager.instance.StartNewRecoder();
     }
 
     public void Replay ()
     {
         Application.LoadLevel (1);
-
-//        #if UNITY_IPHONE 
-//            banner.visible = false;
-//        #endif
-//
-//        RectTransform rect = scoreText.GetComponent<RectTransform> ();
-//        rect.anchoredPosition = new Vector2 (0, -53);
-//
-//        parachute.SetActive (true);
-//        player.SetActive (true);
-//        endGameUI.SetActive (false);
-//        Physics2D.gravity = new Vector2 (0, 0);
-//        playerController.enabled = false;
-//
-//        recorder2.backPlayRecord ();
-//        recorder1.backPlayRecord ();
     }
 
     public void recordPlayFinish ()
@@ -173,12 +139,8 @@ public class GameController : MonoBehaviour
 
         parachute.SetActive (false);
         player.SetActive (false);
-//        player.SetActive (false);
 
-
-
-//        recorder1.endRecord ();
-//        recorder2.endRecord ();
+		RecoderManager.instance.PlayRecoder();
 
 #if UNITY_IPHONE 
         if (adLoaded)
@@ -212,18 +174,7 @@ public class GameController : MonoBehaviour
         Debug.Log ("Loaded!\n");
 
     }
-
-    public void AddEnergy (float amount)
-    {
-        currentEnergy += amount;
-//        UpdateEnergyImage ();
-    }
-
-//    public void UpdateEnergyImage()
-//    {
-//        energyImage.fillAmount = currentEnergy / totalEnergy;
-//    }
-
+	
     void OnDestroy ()
     {
 #if UNITY_IPHONE 

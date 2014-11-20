@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class Recorder : MonoBehaviour
 {
-
     public Transform recorderTarget;
     private float recorderGap;
     private Stack<Vector3> positonStack = new Stack<Vector3> ();

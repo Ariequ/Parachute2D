@@ -51,13 +51,6 @@ public class SoundManager : MonoBehaviour {
 	IEnumerator StartBGM()
 	{
 		yield return new WaitForSeconds(0.5f);
-		
-//		while(PatternSystem.instance.loadingComplete == false)
-//		{
-//			yield return 0;
-//		}
-		
-		//Debug.Log("play");
 		bgmSound.Play();
 	}
 	
