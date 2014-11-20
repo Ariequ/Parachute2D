@@ -32,7 +32,7 @@ public class EndUIController : MonoBehaviour
         }
         else
         {
-            SoundManager.instance.PlayingSound("Lose", 1, Camera.main.transform.position);
+
         }
     }
 //

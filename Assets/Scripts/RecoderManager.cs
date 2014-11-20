@@ -39,19 +39,19 @@ public class RecoderManager : MonoBehaviour
 			{
 				GameObject player = GameObject.Instantiate(Resources.Load<GameObject>("Player")) as GameObject;
 				player.name = "Player_" + i;
+                player.tag = "Player";
 
 				player.transform.position = originalPositon;
 
-				PlayerController controller = GameObject.Find(player.name + "/Pilot").GetComponent<PlayerController>();
+                GameObject pilot = GameObject.Find(player.name + "/Pilot");
+                pilot.tag = "Player";
+
+                PlayerController controller = pilot.GetComponent<PlayerController>();
 				controller.showScreenEffect = false;
 
 				SuperMeatBoyStyleRecorder recoder = player.AddComponent<SuperMeatBoyStyleRecorder>();
 
-				Debug.Log("add SuperMeatBoyStyleRecorder");
-
-				recoder.m_tap = commandTaps[i];
-
-				Debug.Log("set m_tap");
+				recoder.m_tap = commandTaps[i];                			
 
 				if (i == commandTaps.Count - 1)
 				{

@@ -28,6 +28,12 @@ public class LovelyCrowController : MonoBehaviour {
         {
             transform.Translate(Vector3.up * Time.deltaTime * 5);
             animator.speed += Time.deltaTime * 2;
+
+            if (Random.value < 0.02f)
+            {
+                SoundManager.instance.PlayingSound("Crow", 1f, transform.position);
+            }
+
             yield return 0;
         }
 

@@ -11,12 +11,8 @@ public class SuperMeatBoyStyleRecorder : MonoBehaviour
 
 	void Start()
 	{
-		Debug.Log("start");
-
 		startTime = Time.time;
 		currentCommanIndex = 0;
-
-		Debug.Log(m_tap.commandList.Count + "m_tap.commandList.Count");
 
 		if (m_tap.commandList.Count > 0)
 		{

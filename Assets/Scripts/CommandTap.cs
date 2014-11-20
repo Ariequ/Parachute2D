@@ -14,7 +14,6 @@ public class CommandTap
 
 	public void AddCommand(Command command)
 	{
-		Debug.Log("Add command=====");
 		commandList.Add(command);
 	}
 }
