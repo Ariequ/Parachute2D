@@ -30,19 +30,15 @@ public class SuperMeatBoyStyleRecorder : MonoBehaviour
 	{
 		if(currentCommand != null && Time.time - startTime >= currentCommand.happenTime)
 		{
-			Debug.Log("in =====");
-
 			controller.Do(currentCommand);
 			currentCommanIndex++;
 
-			Debug.Log(currentCommanIndex + "----" + m_tap.commandList.Count);
 			if(currentCommanIndex < m_tap.commandList.Count)
 			{
 				currentCommand = m_tap.commandList [currentCommanIndex];
 			}
 			else
 			{
-				Debug.Log("in ===232222===");
 				currentCommand = null;
 				this.enabled = false;
 			}
