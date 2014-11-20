@@ -15,21 +15,25 @@ public class CoinController : MonoBehaviour
     
     void OnTriggerEnter2D (Collider2D collision)
     {
-        animator.speed = 1;
-        animator.SetBool ("MeetPilot", true);
-        initEffect(effect);
-        audio.Play();
+        if (collision.tag == "Pilot")
+        {
+            animator.speed = 1;
+            animator.SetBool ("MeetPilot", true);
+            initEffect (effect);
+            SoundManager.instance.PlayingSound ("GetCoin", 1f, transform.position);
+        }
     }
 
-    public void OnAnimationEnd()
+    public void OnAnimationEnd ()
     {
         Destroy (gameObject);
     }
 
     //Spawn effect method
-    private void initEffect(GameObject prefab){
-        GameObject go = (GameObject) Instantiate(prefab, transform.position, Quaternion.identity);
+    private void initEffect (GameObject prefab)
+    {
+        GameObject go = (GameObject)Instantiate (prefab, transform.position, Quaternion.identity);
         go.transform.parent = transform;
-        go.transform.localPosition = new Vector3(go.transform.localPosition.x, go.transform.localPosition.y, go.transform.localPosition.z);    
+        go.transform.localPosition = new Vector3 (go.transform.localPosition.x, go.transform.localPosition.y, go.transform.localPosition.z);    
     }
 }

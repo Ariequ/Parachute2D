@@ -18,6 +18,7 @@ public class LovelyCrowController : MonoBehaviour {
 //            animator.SetTrigger("PlayerEnter");
             startFlytime = Time.time;
             StartCoroutine(flyAway());
+            SoundManager.instance.PlayingSound("Crow", 1f, transform.position);
         }
     }
 

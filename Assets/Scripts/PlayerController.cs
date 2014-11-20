@@ -158,7 +158,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnDieAniamtionEnd ()
     {
-        Debug.Log("on die animationend");
         GameObject.Find ("GameController").SendMessage ("EndGame", false);
     }
 

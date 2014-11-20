@@ -30,6 +30,10 @@ public class EndUIController : MonoBehaviour
             WinText.text = "YOU WIN !";
 			loseImage.enabled = false;
         }
+        else
+        {
+            SoundManager.instance.PlayingSound("Lose", 1, Camera.main.transform.position);
+        }
     }
 //
 //	void OnEnable()

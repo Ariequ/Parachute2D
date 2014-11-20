@@ -24,6 +24,8 @@ public class TankCotroller : MonoBehaviour
             aBullet.transform.rotation = transform.localRotation;
 
             aBullet.rigidbody2D.velocity = new Vector2 (-Mathf.Sin (Mathf.PI * transform.eulerAngles.z / 180), Mathf.Cos (Mathf.PI * transform.eulerAngles.z / 180)) * bulletSpeed;
+
+            SoundManager.instance.PlayingSound("TankFire", 1f, transform.position);
         }
     }
 
@@ -32,11 +34,11 @@ public class TankCotroller : MonoBehaviour
         animator.SetBool("onFire", false);
     }
 
-    void OnBecameVisible() 
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (!fired)
-        {
-            animator.SetBool ("onFire", true);
+        if (other.tag == "Pilot")
+        {     
+              animator.SetBool ("onFire", true);
         }
     }
 
