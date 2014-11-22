@@ -27,8 +27,8 @@ public class ParachuteController : MonoBehaviour
             animator.SetInteger(IDLE_TYPE, currentIdleType);
 
 			PlayerController playerController = GameObject.Find(transform.parent.name + "/Pilot").GetComponent<PlayerController>();
-			playerController.normalGravity += -playerController.ironMeshGravity;
-			playerController.downGravity += -playerController.ironMeshGravity;
+			playerController.normalGravity += playerController.ironMeshGravity;
+			playerController.downGravity += playerController.ironMeshGravity;
         }
     }
 

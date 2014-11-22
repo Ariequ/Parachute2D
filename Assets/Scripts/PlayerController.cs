@@ -3,15 +3,9 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    [HideInInspector]
-    public float
-        downGravity = -100f;
-    [HideInInspector]
-    public float
-        normalGravity = -5;
-    [HideInInspector]
-    public float
-        ironMeshGravity = 5;
+    public float downGravity = -40f;
+    public float normalGravity = -40;
+    public float ironMeshGravity = -10;
     private GameObject right;
     private GameObject left;
     private float moveX = 6.4f / 12;
@@ -71,7 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            return m_gravity;
+            return new Vector2 (0, downGravity);
         }
     }
 
@@ -199,7 +193,7 @@ public class PlayerController : MonoBehaviour
 
             iTween.ShakePosition (Camera.main.gameObject, iTween.Hash ("y", 0.3f, "time", 1.0f));
 
-            SoundManager.instance.PlayingSound("Lose", 1, Camera.main.transform.position);
+            SoundManager.instance.PlayingSound ("Lose", 1, Camera.main.transform.position);
         }
     }
 
@@ -222,8 +216,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate ()
     {
-        m_gravity = new Vector2(0, downGravity);
-
-        rigidbody2D.AddForce (m_gravity * rigidbody2D.mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        rigidbody2D.AddForce (Gravity * rigidbody2D.mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
     }
 }
