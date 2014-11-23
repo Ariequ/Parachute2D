@@ -16,10 +16,6 @@ public class GameController : MonoBehaviour
     private  PlayerController playerController;
     private ParachuteController parachuteController;
 	
-    public float totalEnergy = 100;
-    public float currentEnergy = 0;
-    public float energyConsumeSpeed = 1;
-    public Image energyImage;
     public CloudController cloudController;
   
     public GameObject startButton;
@@ -42,7 +38,12 @@ public class GameController : MonoBehaviour
 #if UNITY_IPHONE 
     private ADBannerView banner = null;
     private bool adLoaded = false;
+    #endif
+
+#if UNITY_ANDROID
+    private AdMobPlugin plugin = null;
 #endif
+
    
 
     // Use this for initialization
@@ -70,6 +71,10 @@ public class GameController : MonoBehaviour
         ADBannerView.onBannerWasClicked += OnBannerClicked;
         ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
         banner.visible = false;
+        #endif
+
+#if UNITY_ANDROID
+        plugin = this.GetComponent<AdMobPlugin>();   
 #endif
     }
     
@@ -144,6 +149,9 @@ public class GameController : MonoBehaviour
         {
             banner.visible = true;
         }
+#endif
+#if UNITY_ANDROID
+        this.plugin.Load();
 #endif
     }
 
