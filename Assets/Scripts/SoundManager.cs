@@ -23,7 +23,6 @@ public class SoundManager : MonoBehaviour {
 	
 	public void Start(){
 		instance = this;	
-		StartCoroutine(StartBGM());
         DontDestroyOnLoad(gameObject);
 	}
 	
@@ -42,16 +41,15 @@ public class SoundManager : MonoBehaviour {
 		return i;
 	}
 	
-	void ManageBGM()
-	{
-		StartCoroutine(StartBGM());
-	}
-	
 	//Start BGM when loading complete
-	IEnumerator StartBGM()
+	public void startBGM()
 	{
-		yield return new WaitForSeconds(0.5f);
 		bgmSound.Play();
 	}
+
+    public void stopBMG()
+    {
+        bgmSound.Stop();
+    }
 	
 }

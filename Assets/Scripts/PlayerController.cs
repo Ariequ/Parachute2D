@@ -74,11 +74,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown (KeyCode.RightArrow))
         {
             Move (Direction.RIGHT);
+            SoundManager.instance.PlayingSound ("Button", 1, Camera.main.transform.position);
         }
-        else
-        if (Input.GetKeyDown (KeyCode.LeftArrow))
+        else if (Input.GetKeyDown (KeyCode.LeftArrow))
         {
             Move (Direction.LEFT);
+            SoundManager.instance.PlayingSound ("Button", 1, Camera.main.transform.position);
         } 
         
         if (Input.GetMouseButtonDown (0))
@@ -93,6 +94,8 @@ public class PlayerController : MonoBehaviour
             {
                 Move (Direction.RIGHT);
             }  
+
+            SoundManager.instance.PlayingSound ("Button", 1, Camera.main.transform.position);
         }
     }
 
@@ -104,8 +107,7 @@ public class PlayerController : MonoBehaviour
             temp.x = 2.7f;
             transform.position = temp;
         }
-        else
-        if (transform.position.x < - 2.7f)
+        else if (transform.position.x < - 2.7f)
         {
             Vector3 temp = transform.position;
             temp.x = -2.7f;
@@ -193,11 +195,16 @@ public class PlayerController : MonoBehaviour
 
             iTween.ShakePosition (Camera.main.gameObject, iTween.Hash ("y", 0.3f, "time", 1.0f));
 
-            SoundManager.instance.PlayingSound ("Lose", 1, Camera.main.transform.position);
+            SoundManager.instance.PlayingSound ("Die", 0.5f, Camera.main.transform.position);
         }
     }
 
     public void OnDieAniamtionEnd ()
+    {
+        Invoke ("sendEndGameMessage", 0.1f);
+    }
+
+    private void sendEndGameMessage ()
     {
         GameObject.Find ("GameController").SendMessage ("EndGame", false);
     }

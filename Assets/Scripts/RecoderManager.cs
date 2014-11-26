@@ -35,6 +35,10 @@ public class RecoderManager : MonoBehaviour
 		if(!isPlayingRecord)
 		{
 			isPlayingRecord = true;
+
+            CameraFollow follow = Camera.main.GetComponent<CameraFollow>();
+            follow.replayMode();
+
 			for (int i = 0; i<commandTaps.Count; i++)
 			{
 				GameObject player = GameObject.Instantiate(Resources.Load<GameObject>("Player")) as GameObject;
@@ -54,8 +58,7 @@ public class RecoderManager : MonoBehaviour
 				recoder.m_tap = commandTaps[i];                			
 
 				if (i == commandTaps.Count - 1)
-				{
-					CameraFollow follow = Camera.main.GetComponent<CameraFollow>();
+				{					
 					follow.followTarget = GameObject.Find(player.name + "/parachute").transform;
 				}
 			}

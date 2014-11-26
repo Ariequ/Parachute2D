@@ -65,9 +65,10 @@ public class GameController : MonoBehaviour
 
         playerGameObject.SetActive(false);
 
+        SoundManager.instance.startBGM();
 
 #if UNITY_IPHONE 
-        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
+        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Bottom);
         ADBannerView.onBannerWasClicked += OnBannerClicked;
         ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
         banner.visible = false;
@@ -80,21 +81,15 @@ public class GameController : MonoBehaviour
     
     public void StartGame (GameObject obj)
     {
-        playerGameObject.SetActive(true);
-
-        
-//        Physics2D.gravity = new Vector2 (0, downGravity);
-
-        playerController.enabled = true;
-
         obj.SetActive (false);
 
+        playerGameObject.SetActive(true);
+        playerController.enabled = true;
         cloudController.SendMessage ("StartGame");
-
         startUI.OnGameStart();
         cameraFollow.OnGameStart();
-
 		playerController.StartRecord();
+
 		RecoderManager.instance.StartNewRecoder();
     }
 
@@ -142,7 +137,9 @@ public class GameController : MonoBehaviour
         parachute.SetActive (false);
         player.SetActive (false);
 
-		RecoderManager.instance.PlayRecoder();
+        Invoke("playRecoder", 2f);
+
+        SoundManager.instance.stopBMG();
 
 #if UNITY_IPHONE 
         if (adLoaded)
@@ -153,6 +150,11 @@ public class GameController : MonoBehaviour
 #if UNITY_ANDROID
         this.plugin.Load();
 #endif
+    }
+
+    private void playRecoder()
+    {
+        RecoderManager.instance.PlayRecoder();
     }
 
     void OnDrawGizmos ()

@@ -34,4 +34,9 @@ public class CameraFollow : MonoBehaviour
 		startTime = Time.time;
 	}
 
+    public void replayMode()
+    {
+        offsetY = -3.5f;
+    }
+
 }

@@ -29,10 +29,12 @@ public class EndUIController : MonoBehaviour
             bestScore.gameObject.SetActive(false);
             WinText.text = "YOU WIN !";
 			loseImage.enabled = false;
+      
+            SoundManager.instance.PlayingSound("Win", 1, Camera.main.transform.position);
         }
         else
         {
-
+            SoundManager.instance.PlayingSound ("Lose", 1, Camera.main.transform.position);
         }
     }
 //

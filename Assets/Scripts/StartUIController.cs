@@ -12,6 +12,7 @@ public class StartUIController : MonoBehaviour
 	private Vector3 orinalPosition;
 	private int currentScore;
     private bool gameStarted;
+    private GameController gameController;
 
 	// Use this for initialization
 	void Start ()
@@ -26,7 +27,7 @@ public class StartUIController : MonoBehaviour
 
         guide.SetActive(false);
 
-//		GameController.gameStart += OnGameStart;
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
 	}
 	
 	// Update is called once per frame
@@ -60,5 +61,23 @@ public class StartUIController : MonoBehaviour
     public void HideGuide()
     {
         guide.SetActive(false);
+    }
+
+    public void onStartButtonPressed(GameObject obj)
+    {
+        gameController.StartGame(obj);
+        audio.Play();
+    }
+
+    public void onReplayButtonPressed()
+    {
+        audio.Play();
+
+        Invoke("replayGame", 0.05f);
+    }
+
+    private void replayGame()
+    {
+        gameController.Replay();
     }
 }
