@@ -76,7 +76,6 @@ public class GameController : MonoBehaviour
 	{
 		if(Input.GetKey(KeyCode.Escape))
 		{
-			Debug.Log("=====");
 			Application.Quit();
 		}
 	}
