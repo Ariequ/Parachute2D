@@ -15,7 +15,7 @@ public class CoinController : MonoBehaviour
     
     void OnTriggerEnter2D (Collider2D collision)
     {
-        if (collision.tag == "Pilot")
+        if (collision.tag == "CoinSensor")
         {
             animator.speed = 1;
             animator.SetBool ("MeetPilot", true);
