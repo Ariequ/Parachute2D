@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{A9F0AE5B-9651-6F5C-6384-9AD6EB6A48A5}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\StreamingAssets\UMSocial_Sdk_Extra_Frameworks\TencentOpenAPI\TencentOpenApi_IOS_Bundle.bundle\js\constant.js" />
+     <Compile Include="Assets\StreamingAssets\UMSocial_Sdk_Extra_Frameworks\TencentOpenAPI\TencentOpenApi_IOS_Bundle.bundle\js\init.js" />
+     <Compile Include="Assets\StreamingAssets\UMSocial_Sdk_Extra_Frameworks\TencentOpenAPI\TencentOpenApi_IOS_Bundle.bundle\js\platform_ios.js" />
+     <Compile Include="Assets\StreamingAssets\UMSocial_Sdk_Extra_Frameworks\TencentOpenAPI\TencentOpenApi_IOS_Bundle.bundle\js\tencent.js" />
+     <Compile Include="Assets\StreamingAssets\UMSocial_Sdk_Extra_Frameworks\TencentOpenAPI\TencentOpenApi_IOS_Bundle.bundle\js\utils.js" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_composer_header.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_shape_yellow.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_comment_detail_nomap.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_title_tab_button_left.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_titile_bar.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_post_comment_platform.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_shape_solid_black.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_ucenter_platform_item.xml" />
+     <None Include="Assets\Plugins\Android\res\anim\umeng_socialize_fade_in.xml" />
+     <None Include="Assets\Plugins\Android\res\anim\umeng_socialize_slide_in_from_bottom.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_button_grey_blue.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_comment_icon.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_comment_view.xml" />
+     <None Include="Assets\Plugins\Android\res\layout-h500dp-normal\umeng_socialize_ucenter.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_share_to_button.xml" />
+     <None Include="Assets\Plugins\Android\res\layout-sw550dp-large\umeng_socialize_post_comment.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_follow_check.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_action_personal_icon.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_commnet_header_bg.xml" />
+     <None Include="Assets\AdMobPlugin\LICENSE.txt" />
+     <None Include="Assets\Plugins\Android\res\values\umeng_socialize_laiwang_strings.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_shape_hollow_grey.xml" />
+     <None Include="Assets\Plugins\Android\res\anim\umeng_socialize_shareboard_animation_out.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_action_back.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_button_login.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_full_curtain.xml" />
+     <None Include="Assets\Plugins\Android\res\anim\umeng_socialize_slide_out_from_bottom.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_at_overlay.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_post_share.xml" />
+     <None Include="Assets\Plugins\Android\res\layout-sw550dp-large\umeng_socialize_titile_bar.xml" />
+     <None Include="Assets\Plugins\Android\res\layout-sw550dp-large\umeng_socialize_full_alert_dialog.xml" />
+     <None Include="Assets\OldFilmEffect\OldFilmEffectShader.shader" />
+     <None Include="Assets\Plugins\Android\res\layout-sw550dp-large\umeng_socialize_post_share.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_title_back_bt.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_sidebar_normal.xml" />
+     <None Include="Assets\Plugins\Android\res\values\umeng_socialize_colors.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_bind_select_dialog.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_at_button.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_share_transparent_corner.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_base_alert_dialog_button.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_shareboard_item_background.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_title_right_bt.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_shape_bt.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_action_share_icon.xml" />
+     <None Include="Assets\Plugins\Android\res\values\umeng_socialize_style.xml" />
+     <None Include="Assets\Plugins\Android\res\values\umeng_socialize_facebook_strings.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_shape_red.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_button_white_blue.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_comment_content.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_comment_more.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_base_alert_dialog.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_oauth_check.xml" />
+     <None Include="Assets\Plugins\Android\res\values\umeng_socialize_strings.xml" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_title_tab_button_right.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_pull_to_refresh_header.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_post_comment.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_window_shadow_pad.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_full_alert_dialog_item.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_at_view.xml" />
+     <None Include="Assets\Plugins\Android\res\anim\umeng_socialize_shareboard_animation_in.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_failed_load_page.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_sidebar_selector.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_simple_spinner_item.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_comment_item.xml" />
+     <None Include="Assets\Plugins\Android\res\layout-sw550dp-large\umeng_socialize_oauth_dialog.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_comment_detail.xml" />
+     <None Include="Assets\Plugins\Android\res\anim\umeng_socialize_fade_out.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_shape_solid_grey.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_actionbar.xml" />
+     <None Include="Assets\Plugins\Android\res\layout-sw550dp-large\umeng_socialize_ucenter.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_shareboard_item.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_ucenter.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_full_alert_dialog.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_shape_cyan.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_bind_bt.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_at_item.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_oauth_dialog.xml" />
+     <None Include="Assets\Plugins\Android\res\values\strings.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_facebook_login_activity_layout.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_sidebar_selected.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_comment_item_bg_shape.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\umeng_socialize_titile_bar_comment.xml" />
+     <None Include="Assets\Plugins\Android\res\drawable\umeng_socialize_button_red_blue.xml" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{4E869ADE-7B93-7FE4-6E08-07339BCDA1F0}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
