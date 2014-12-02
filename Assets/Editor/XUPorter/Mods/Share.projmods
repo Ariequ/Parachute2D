@@ -1,0 +1,19 @@
+{
+    "group": "Share",
+    "libs": ["libiconv.dylib",
+    		"libsqlite3.dylib",
+    		"libstdc++.dylib",
+    		"libz.dylib"],
+    "frameworks": ["Security.framework",
+    				"SystemConfiguration.framework",
+    				"CoreGraphics.framework",
+    				"CoreTelephony.framework",
+    				"Social.framework",
+    				"Accounts.framework"],
+    "headerpaths": [],                    
+    "files":   [],
+    "folders": ["Editor/XUPorter/Mods/iOS/UMSocial_Sdk_4.0"],    
+    "excludes": ["^.*.meta$", "^.*.mdown$", "^.*.pdf$"],
+    "compiler_flags": [],
+    "linker_flags": []
+}
