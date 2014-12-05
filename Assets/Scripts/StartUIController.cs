@@ -80,4 +80,12 @@ public class StartUIController : MonoBehaviour
     {
         gameController.Replay();
     }
+
+    public int CurrentScore
+    {
+        get
+        {
+            return currentScore;
+        }
+    }
 }

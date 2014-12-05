@@ -8,6 +8,7 @@ public class EndUIController : MonoBehaviour
     public Text WinText;
 	public Text score;
 	public Image loseImage;
+    public StartUIController startUIController;
 
     void Awake()
     {
@@ -35,6 +36,12 @@ public class EndUIController : MonoBehaviour
         else
         {
             SoundManager.instance.PlayingSound ("Lose", 1, Camera.main.transform.position);
+        }
+
+        Debug.Log("Add to GoogleAnalyticss " + startUIController.CurrentScore);
+        if (GoogleAnalytics.instance)
+        {
+            GoogleAnalytics.instance.LogScreen("Score: " + startUIController.CurrentScore);
         }
     }
 //
