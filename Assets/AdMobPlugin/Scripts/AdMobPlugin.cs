@@ -155,6 +155,8 @@ public class AdMobPlugin : MonoBehaviour{
 
 	private void Initialize(){
 
+        this.enabled = false;
+
 		if(!this.isTesting){
 
 			Debug.LogWarning("AdMobPlugin is NOT in test mode. Please make sure you do not request invalid impressions while testing your application.");

@@ -80,7 +80,9 @@ public static class XCodePostProcess
         //在指定代码后面增加一行
         UnityAppController.WriteBelow("AppController_SendNotificationWithArg(kUnityOnOpenURL, notifData);","return [UMSocialSnsService handleOpenURL:url];");
 
+        UnityAppController.WriteBelow("UnityInitApplicationNoGraphics([[[NSBundle mainBundle] bundlePath]UTF8String]);", "float version = [[[UIDevice currentDevice] systemVersion] floatValue];\r if (version >= 8.0)\r{UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: (UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert) categories:nil];[[UIApplication sharedApplication] registerUserNotificationSettings:settings];}");
 
+        UnityAppController.WriteBelow("UnityCleanup();\n}", "- (void)application: (UIApplication *)application didRegisterUserNotificationSettings: (UIUserNotificationSettings *)notificationSettings\r{\rfloat version = [[[UIDevice currentDevice] systemVersion] floatValue];\rif (version >= 8.0)\r{\r[application registerForRemoteNotifications];\r}\r}");
     }
 
     #endif
