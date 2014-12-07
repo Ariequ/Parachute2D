@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class EndUIController : MonoBehaviour
 {
+    public GameObject best;
+    public GameObject currentScore;
     public Text bestScore;
     public Text WinText;
 	public Text score;
@@ -18,16 +20,17 @@ public class EndUIController : MonoBehaviour
     // Use this for initialization
     void Update ()
     {
-        bestScore.text = "Best: " + PlayerPrefs.GetInt ("Best Score");
+        bestScore.text = PlayerPrefs.GetInt ("Best Score").ToString();
     }
 
     public void UpdateUI(bool isWin)
     {
-		RectTransform rect = score.GetComponent<RectTransform>();
-		rect.anchoredPosition = new Vector2(0, -181);
+        score.text = startUIController.CurrentScore.ToString();
+
         if (isWin)
         {
-            bestScore.gameObject.SetActive(false);
+            best.SetActive(false);
+            currentScore.SetActive(false);
             WinText.text = "YOU WIN !";
 			loseImage.enabled = false;
       

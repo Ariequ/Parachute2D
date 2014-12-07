@@ -18,11 +18,24 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource bgmSound;
 	
 	public List<SoundGroup> sound_List = new List<SoundGroup>();
+
+    private static SoundManager _instance;
 	
-	public static SoundManager instance;
+	public static SoundManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new SoundManager();
+            }
+
+            return _instance;
+        }
+    }
 	
 	public void Start(){
-		instance = this;	
+		_instance = this;	
         DontDestroyOnLoad(gameObject);
 	}
 	

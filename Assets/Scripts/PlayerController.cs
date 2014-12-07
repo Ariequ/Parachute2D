@@ -150,8 +150,13 @@ public class PlayerController : MonoBehaviour
         if (!firstOperate)
         {
             firstOperate = true;
-            StartUIController controller = GameObject.Find ("StartUI").GetComponent<StartUIController> ();
-            controller.HideGuide ();
+
+            GameObject startUI = GameObject.Find ("StartUI");
+
+            if (startUI != null)
+            {
+                startUI.GetComponent<StartUIController>().HideGuide();
+            }
         }
 
         if (showScreenEffect)

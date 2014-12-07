@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 	public int gizmosCount;
 	public float gravityUpdateTime = 1f;
 	public GameObject endGameUI;
+    public GameObject startGameUI;
 	public GameObject playerGameObject;
 	private float lastGravityUpdateTime;
 	private GameObject parachute;
@@ -15,7 +16,6 @@ public class GameController : MonoBehaviour
 	private ParachuteController parachuteController;
 	public CloudController cloudController;
 	public GameObject startButton;
-	public Text scoreText;
 	private Vector3 originPlayerPosition;
 	private Vector3 originParachutePosition;
 	private TankCotroller[] trankControllers;
@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+        startGameUI.SetActive(true);
 		endGameUI.SetActive(false);
 		parachute = GameObject.FindGameObjectWithTag("Parachute");
 		parachuteController = parachute.GetComponent<ParachuteController>();
@@ -126,6 +127,7 @@ public class GameController : MonoBehaviour
 
 	public void EndGame(bool isWin)
 	{
+        startGameUI.SetActive(false);
 		endGameUI.SetActive(true);
 		endGameUI.GetComponent<EndUIController>().UpdateUI(isWin);
 

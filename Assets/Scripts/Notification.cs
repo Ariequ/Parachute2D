@@ -17,7 +17,7 @@ public class Notification : MonoBehaviour
     {
         Debug.Log("game psuse status:" + pauseStatus);
         var notif = new LocalNotification ();
-        notif.fireDate = DateTime.Now.AddSeconds (10);
+        notif.fireDate = DateTime.Now.AddSeconds (1800);
         notif.alertBody = "Why not try again!";
         NotificationServices.ScheduleLocalNotification (notif);
     }
