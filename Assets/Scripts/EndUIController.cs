@@ -44,7 +44,14 @@ public class EndUIController : MonoBehaviour
         Debug.Log("Add to GoogleAnalyticss " + startUIController.CurrentScore);
         if (GoogleAnalytics.instance)
         {
-            GoogleAnalytics.instance.LogScreen("Score: " + startUIController.CurrentScore);
+            string shareString = "Score: " + startUIController.CurrentScore;
+
+#if UNITY_IOS
+            shareString = "iOS " + shareString;
+#elif UNITY_ANDROID
+            shareString = "Android" + shareString;
+#endif
+            GoogleAnalytics.instance.LogScreen(shareString);
         }
     }
 //

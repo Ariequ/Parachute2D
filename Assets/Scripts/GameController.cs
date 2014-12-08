@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
 
 	public void Replay()
 	{
-		Application.LoadLevel(1);
+		Application.LoadLevel(0);
 	}
 
 	public void recordPlayFinish()
