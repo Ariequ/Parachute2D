@@ -93,6 +93,20 @@ public class GameController : MonoBehaviour
 		playerController.StartRecord();
 
 		RecoderManager.instance.StartNewRecoder();
+
+        if (GoogleAnalytics.instance)
+        {
+            string shareString = " Start Game";
+            
+            #if UNITY_IOS
+            shareString = "iOS " + shareString;
+            #elif UNITY_ANDROID
+            shareString = "Android" + shareString;
+            #endif
+            GoogleAnalytics.instance.LogScreen(shareString);
+
+            Debug.Log("Add to GoogleAnalyticss " + shareString);
+        }
 	}
 
 	public void Replay()
@@ -153,6 +167,20 @@ public class GameController : MonoBehaviour
 #if UNITY_ANDROID
         this.plugin.Load();
 #endif
+
+        if (GoogleAnalytics.instance)
+        {
+            string shareString = " Score: " + startUI.CurrentScore;
+            
+            #if UNITY_IOS
+            shareString = "iOS " + shareString;
+            #elif UNITY_ANDROID
+            shareString = "Android" + shareString;
+            #endif
+            GoogleAnalytics.instance.LogScreen(shareString);
+
+            Debug.Log("Add to GoogleAnalyticss " + shareString);
+        }
 	}
 
 	private void playRecoder()

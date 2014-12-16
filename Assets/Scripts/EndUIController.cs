@@ -41,18 +41,18 @@ public class EndUIController : MonoBehaviour
             SoundManager.instance.PlayingSound ("Lose", 1, Camera.main.transform.position);
         }
 
-        Debug.Log("Add to GoogleAnalyticss " + startUIController.CurrentScore);
-        if (GoogleAnalytics.instance)
-        {
-            string shareString = "Score: " + startUIController.CurrentScore;
-
-#if UNITY_IOS
-            shareString = "iOS " + shareString;
-#elif UNITY_ANDROID
-            shareString = "Android" + shareString;
-#endif
-            GoogleAnalytics.instance.LogScreen(shareString);
-        }
+//        Debug.Log("Add to GoogleAnalyticss " + startUIController.CurrentScore);
+//        if (GoogleAnalytics.instance)
+//        {
+//            string shareString = "Score: " + startUIController.CurrentScore;
+//
+//#if UNITY_IOS
+//            shareString = "iOS " + shareString;
+//#elif UNITY_ANDROID
+//            shareString = "Android" + shareString;
+//#endif
+//            GoogleAnalytics.instance.LogScreen(shareString);
+//        }
     }
 //
 //	void OnEnable()
