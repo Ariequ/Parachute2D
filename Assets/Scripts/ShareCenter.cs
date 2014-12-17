@@ -34,7 +34,8 @@ public class ShareCenter : MonoBehaviour {
         //接入微信
         Social.SetWechatAppId("wx6dc874911aca6ad5");
         
-        Social.SetTargetUrl("http://a.app.qq.com/o/simple.jsp?pkgname=com.ariequ.parachute");
+//        Social.SetTargetUrl("http://a.app.qq.com/o/simple.jsp?pkgname=com.ariequ.parachute");
+        Social.SetTargetUrl("http://ariequ.github.io/blog/2014/12/17/parachute-page/");
         
         //设置分享回调
         //如果无需回调 OpenShareWithImagePath最后一个参数可不填
