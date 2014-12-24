@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Notification : MonoBehaviour
+public class NotificationIOS : MonoBehaviour
 {
     void Update ()
     {

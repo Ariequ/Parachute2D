@@ -36,12 +36,13 @@ public class GameController : MonoBehaviour
 #if UNITY_ANDROID
     private AdMobPlugin plugin = null;
 #endif
-
-   
+    
 
 	// Use this for initialization
 	void Start()
 	{
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         startGameUI.SetActive(true);
 		endGameUI.SetActive(false);
 		parachute = GameObject.FindGameObjectWithTag("Parachute");
@@ -69,11 +70,12 @@ public class GameController : MonoBehaviour
 		#endif
 
 #if UNITY_ANDROID
-        plugin = this.GetComponent<AdMobPlugin>();   
+        plugin = this.GetComponent<AdMobPlugin>();  
+        plugin.Hide();
 #endif
-	}
-
-	void Update()
+    }
+    
+    void Update()
 	{
 		if(Input.GetKey(KeyCode.Escape))
 		{
@@ -107,6 +109,7 @@ public class GameController : MonoBehaviour
 
             Debug.Log("Add to GoogleAnalyticss " + shareString);
         }
+
 	}
 
 	public void Replay()
@@ -161,13 +164,14 @@ public class GameController : MonoBehaviour
 #if UNITY_IPHONE 
         if (adLoaded)
         {
-            banner.visible = true;
+            banner.visible = true;           
         }
 #endif
 #if UNITY_ANDROID
         this.plugin.Load();
+        this.plugin.Show();
 #endif
-
+        
         if (GoogleAnalytics.instance)
         {
             string shareString = " Score: " + startUI.CurrentScore;
@@ -180,6 +184,8 @@ public class GameController : MonoBehaviour
             GoogleAnalytics.instance.LogScreen(shareString);
 
             Debug.Log("Add to GoogleAnalyticss " + shareString);
+                   
+
         }
 	}
 
