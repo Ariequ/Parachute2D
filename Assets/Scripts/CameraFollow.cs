@@ -17,9 +17,6 @@ public class CameraFollow : MonoBehaviour
         float designRatio = 1136f / 640;
         float currentRatio = (float)Screen.height / Screen.width;
 
-        Debug.Log(designRatio);
-        Debug.Log(currentRatio);
-
         Camera.main.orthographicSize =  currentRatio / designRatio * 1136f/200;
 	}
 

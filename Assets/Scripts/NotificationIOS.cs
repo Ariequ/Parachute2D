@@ -18,11 +18,14 @@ public class NotificationIOS : MonoBehaviour
     void OnApplicationPause (bool pauseStatus)
     {
         #if UNITY_IOS
-        Debug.Log("game psuse status:" + pauseStatus);
-        var notif = new LocalNotification ();
-        notif.fireDate = DateTime.Now.AddSeconds (1800);
-        notif.alertBody = "Why not try again!";
-        NotificationServices.ScheduleLocalNotification (notif);
+
+        if (pauseStatus)
+        {
+            var notif = new LocalNotification ();
+            notif.fireDate = DateTime.Now.AddSeconds (1800);
+            notif.alertBody = "Why not try again!";
+            NotificationServices.ScheduleLocalNotification (notif);
+        }
 #endif
     }
 }

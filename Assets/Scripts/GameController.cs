@@ -85,9 +85,7 @@ public class GameController : MonoBehaviour
             #elif UNITY_ANDROID
             shareString = "Android" + shareString;
             #endif
-            GoogleAnalytics.instance.LogScreen(shareString);
-
-            Debug.Log("Add to GoogleAnalyticss " + shareString);
+            GoogleAnalytics.instance.LogScreen(shareString);          
         }
 
 	}
