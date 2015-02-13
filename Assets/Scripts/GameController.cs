@@ -163,6 +163,7 @@ public class GameController : MonoBehaviour
 
     private void ShowAdmob()
     {
+		Debug.Log ("show admob");
         if(AdMob.isInterstitalReady())
         {
             AdMob.displayInterstital();
