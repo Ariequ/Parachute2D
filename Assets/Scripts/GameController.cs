@@ -28,6 +28,16 @@ public class GameController : MonoBehaviour
 	public StartUIController startUI;
 	public CameraFollow cameraFollow;
 
+#if UNITY_IPHONE 
+    private ADBannerView banner = null;
+    private bool adLoaded = false;
+    #endif
+
+#if UNITY_ANDROID
+    private AdMobPlugin plugin = null;
+#endif
+    
+
 	// Use this for initialization
 	void Start()
 	{
@@ -51,8 +61,18 @@ public class GameController : MonoBehaviour
 		playerGameObject.SetActive(false);
 
 		SoundManager.instance.startBGM();
-       
-        AdMob.requestInterstital( "ca-app-pub-1215085077559999/3564479460", "ca-app-pub-1215085077559999/5180813465" );
+
+#if UNITY_IPHONE 
+        banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Bottom);
+        ADBannerView.onBannerWasClicked += OnBannerClicked;
+        ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
+        banner.visible = false;
+		#endif
+
+#if UNITY_ANDROID
+        plugin = this.GetComponent<AdMobPlugin>();  
+        plugin.Hide();
+#endif
     }
     
     void Update()
@@ -85,7 +105,9 @@ public class GameController : MonoBehaviour
             #elif UNITY_ANDROID
             shareString = "Android" + shareString;
             #endif
-            GoogleAnalytics.instance.LogScreen(shareString);          
+            GoogleAnalytics.instance.LogScreen(shareString);
+
+            Debug.Log("Add to GoogleAnalyticss " + shareString);
         }
 
 	}
@@ -138,6 +160,17 @@ public class GameController : MonoBehaviour
 		Invoke("playRecoder", 2f);
 
 		SoundManager.instance.stopBMG();
+
+#if UNITY_IPHONE 
+        if (adLoaded)
+        {
+            banner.visible = true;           
+        }
+#endif
+#if UNITY_ANDROID
+        this.plugin.Load();
+        this.plugin.Show();
+#endif
         
         if (GoogleAnalytics.instance)
         {
@@ -150,25 +183,16 @@ public class GameController : MonoBehaviour
             #endif
             GoogleAnalytics.instance.LogScreen(shareString);
 
-            Debug.Log("Add to GoogleAnalyticss " + shareString);                   
-        }
+            Debug.Log("Add to GoogleAnalyticss " + shareString);
+                   
 
-        Invoke("ShowAdmob", 1f);
+        }
 	}
 
 	private void playRecoder()
 	{
 		RecoderManager.instance.PlayRecoder();
 	}
-
-    private void ShowAdmob()
-    {
-		Debug.Log ("show admob");
-        if(AdMob.isInterstitalReady())
-        {
-            AdMob.displayInterstital();
-        }
-    }
 
 	void OnDrawGizmos()
 	{
@@ -180,9 +204,28 @@ public class GameController : MonoBehaviour
 			Gizmos.DrawLine(new Vector3(-3.2f + gap * i, 1000, 0), new Vector3(-3.2f + gap * i, -1000, 0));
 		}
 	}
+
+	void OnBannerClicked()
+	{
+		Debug.Log("Clicked!\n");
+	}
+    
+	void OnBannerLoaded()
+	{
+		#if UNITY_IPHONE 
+        adLoaded = true;
+#endif
+		Debug.Log("Loaded!\n");
+
+	}
 	
 	void OnDestroy()
 	{
+#if UNITY_IPHONE 
+//        banner.visible = false;
+        banner = null;
+#endif
+
 		gameStart = null;
 	}
 }

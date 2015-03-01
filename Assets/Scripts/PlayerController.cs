@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private GameObject left;
     private float moveX = 6.4f / 6;
     private float gravityScale = 0.5f;
-    private float moveTime = 0.15f;
+    private float moveTime = 0.1f;
     private Animator animator;
     private float lastSpeedX;
     private float lastTouchTime = 0;
@@ -176,15 +176,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator hideleft ()
     {
-        left.animation.Play();
-        yield return new WaitForSeconds (0.1f);
+        yield return new WaitForSeconds (0.05f);
         left.SetActive (false);
     }
 
     IEnumerator hideright ()
     {
-        right.animation.Play();
-        yield return new WaitForSeconds (0.1f);
+        yield return new WaitForSeconds (0.05f);
         right.SetActive (false);
     }
 
