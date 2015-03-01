@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     public float ironMeshGravity = -10;
     private GameObject right;
     private GameObject left;
-    private float moveX = 6.4f / 12;
+    private float moveX = 6.4f / 6;
     private float gravityScale = 0.5f;
-    private float moveTime = 0.1f;
+    private float moveTime = 0.15f;
     private Animator animator;
     private float lastSpeedX;
     private float lastTouchTime = 0;
@@ -176,13 +176,15 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator hideleft ()
     {
-        yield return new WaitForSeconds (0.05f);
+        left.animation.Play();
+        yield return new WaitForSeconds (0.1f);
         left.SetActive (false);
     }
 
     IEnumerator hideright ()
     {
-        yield return new WaitForSeconds (0.05f);
+        right.animation.Play();
+        yield return new WaitForSeconds (0.1f);
         right.SetActive (false);
     }
 
