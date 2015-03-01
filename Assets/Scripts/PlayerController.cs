@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float ironMeshGravity = -10;
     private GameObject right;
     private GameObject left;
-    private float moveX = 6.4f / 6;
+    private float moveX = 6.4f / 12;
     private float gravityScale = 0.5f;
     private float moveTime = 0.1f;
     private Animator animator;

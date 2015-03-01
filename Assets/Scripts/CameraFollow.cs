@@ -13,14 +13,6 @@ public class CameraFollow : MonoBehaviour
 		followTarget = GameObject.FindGameObjectWithTag ("Parachute").transform;
 //		GameController.gameStart += OnGameStart;
 		startTime = float.MaxValue;
-       
-        float designRatio = 1136f / 640;
-        float currentRatio = (float)Screen.height / Screen.width;
-
-        Debug.Log(designRatio);
-        Debug.Log(currentRatio);
-
-        Camera.main.orthographicSize =  currentRatio / designRatio * 1136f/200;
 	}
 
 	void Update ()
