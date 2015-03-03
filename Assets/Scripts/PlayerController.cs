@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject ContinueUI;
     public float downGravity = -40f;
     public float normalGravity = -40;
     public float ironMeshGravity = -10;
@@ -18,6 +19,11 @@ public class PlayerController : MonoBehaviour
     public bool showScreenEffect = true;
     private float startTime;
     private Vector2 m_gravity;
+    private Collision2D collision;
+    private bool showingContinueUI;
+    GameData _gameData;
+    GameController gameController;
+    GameUIController _gameUIController;
     
     enum Direction
     {
@@ -43,17 +49,45 @@ public class PlayerController : MonoBehaviour
         }
 
         downGravity = normalGravity = -40f;
+
+        gameController = GameObject.Find ("GameController").GetComponent<GameController> ();
     }
 
     void Update ()
     {
-        if (transform.tag == "Pilot")
+        if (transform.tag == "Pilot" && !showingContinueUI)
         {
             CheckOperate ();
         }
         
         CheckPosition ();
         CheckAnimation ();
+    }
+
+    public GameData gameData
+    {
+        get
+        {
+            if (_gameData == null)
+            {
+                _gameData = gameController.gameData;
+            }
+            
+            return _gameData;
+        }
+    }
+
+    public GameUIController gameUIController
+    {
+        get
+        {
+            if (_gameUIController == null)
+            {
+                _gameUIController = gameController.gameUIController;
+            }
+            
+            return _gameUIController;
+        }
     }
 
     public void StartRecord ()
@@ -155,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
             if (startUI != null)
             {
-                startUI.GetComponent<StartUIController>().HideGuide();
+                startUI.GetComponent<StartUIController> ().HideGuide ();
             }
         }
 
@@ -176,14 +210,14 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator hideleft ()
     {
-        left.animation.Play();
+        left.animation.Play ();
         yield return new WaitForSeconds (0.1f);
         left.SetActive (false);
     }
 
     IEnumerator hideright ()
     {
-        right.animation.Play();
+        right.animation.Play ();
         yield return new WaitForSeconds (0.1f);
         right.SetActive (false);
     }
@@ -192,18 +226,54 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && transform.tag == "Pilot")
         {
-            animator.SetBool ("die", true);
-
-            GameObject go = GameObject.FindGameObjectWithTag ("Parachute");
-            if (go != null)
-            {
-                go.SetActive (false);
-            }
-
-            iTween.ShakePosition (Camera.main.gameObject, iTween.Hash ("y", 0.3f, "time", 1.0f));
-
-            SoundManager.instance.PlayingSound ("Die", 0.5f, Camera.main.transform.position);
+            this.collision = collision;
+            ShowContinueUI ();
         }
+    }
+
+    private void ShowContinueUI ()
+    {
+        if (gameData.DogCount >= 100)
+        {
+            Time.timeScale = 0;
+            ContinueUI.SetActive (true);
+            showingContinueUI = true;
+        }
+        else
+        {
+            OnCancel ();
+        }
+    }
+
+    public void OnConfirm ()
+    {
+        gameData.DogCount -= 100;
+        gameUIController.UpdateUI(gameData);
+        showingContinueUI = false;
+        collision.gameObject.SetActive (false);
+        ContinueUI.SetActive (false);
+        Time.timeScale = 1;
+    }
+
+    public void OnCancel ()
+    {
+        showingContinueUI = false;
+
+        Time.timeScale = 1;
+
+        ContinueUI.SetActive (false);
+
+        animator.SetBool ("die", true);
+        
+        GameObject go = GameObject.FindGameObjectWithTag ("Parachute");
+        if (go != null)
+        {
+            go.SetActive (false);
+        }
+        
+        iTween.ShakePosition (Camera.main.gameObject, iTween.Hash ("y", 0.3f, "time", 1.0f));
+        
+        SoundManager.instance.PlayingSound ("Die", 0.5f, Camera.main.transform.position);
     }
 
     public void OnDieAniamtionEnd ()

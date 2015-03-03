@@ -28,10 +28,16 @@ public class GameController : MonoBehaviour
 	public StartUIController startUI;
 	public CameraFollow cameraFollow;
 
+    public GameUIController gameUIController;
+
+    private GameData _gameData;
+
 	// Use this for initialization
 	void Start()
 	{
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+        _gameData = new GameData();
 
         startGameUI.SetActive(true);
 		endGameUI.SetActive(false);
@@ -53,6 +59,9 @@ public class GameController : MonoBehaviour
 		SoundManager.instance.startBGM();
        
         AdMob.requestInterstital( "ca-app-pub-1215085077559999/3564479460", "ca-app-pub-1215085077559999/5180813465" );
+        AdMob.init( "ca-app-pub-1215085077559999/3044727060", "ca-app-pub-1215085077559999/6187409461" );
+
+        gameUIController.UpdateUI(gameData);
     }
     
     void Update()
@@ -62,6 +71,14 @@ public class GameController : MonoBehaviour
 			Application.Quit();
 		}
 	}
+
+    public GameData gameData
+    {
+        get
+        {
+            return _gameData;
+        }
+    }
     
 	public void StartGame(GameObject obj)
 	{
@@ -71,6 +88,7 @@ public class GameController : MonoBehaviour
 		playerController.enabled = true;
 		cloudController.SendMessage("StartGame");
 		startUI.OnGameStart();
+        gameUIController.gameObject.SetActive(true);
 		cameraFollow.OnGameStart();
 		playerController.StartRecord();
 
@@ -88,6 +106,7 @@ public class GameController : MonoBehaviour
             GoogleAnalytics.instance.LogScreen(shareString);          
         }
 
+        AdMob.createBanner( AdMobBanner.SmartBanner, AdMobLocation.BottomCenter );
 	}
 
 	public void Replay()
