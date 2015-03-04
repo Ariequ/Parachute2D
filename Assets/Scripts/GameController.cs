@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour
 	{
         startGameUI.SetActive(false);
 		endGameUI.SetActive(true);
-		endGameUI.GetComponent<EndUIController>().UpdateUI(isWin);
+		endGameUI.GetComponent<EndUIController>().UpdateUI(isWin, gameData);
 
 		Rigidbody2D rigidbody = player.GetComponent<Rigidbody2D>();
 		rigidbody.isKinematic = true;

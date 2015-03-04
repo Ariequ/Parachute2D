@@ -34,12 +34,8 @@ public class StartUIController : MonoBehaviour
 	void Update ()
 	{
         if (currentScore != (int)((orinalPosition.y - player.transform.position.y) / ScaleFactor) && gameStarted) {
-			currentScore = (int)((orinalPosition.y - player.transform.position.y) / ScaleFactor);
-			score.text = "" + currentScore;
-
-			if (currentScore > PlayerPrefs.GetInt ("Best Score")) {
-				PlayerPrefs.SetInt ("Best Score", currentScore);
-			}
+            gameController.gameData.Score = (int)((orinalPosition.y - player.transform.position.y) / ScaleFactor);
+            score.text = gameController.gameData.Score.ToString();
 		}
 	}
 
