@@ -23,7 +23,7 @@ public class TankCotroller : MonoBehaviour
             aBullet.transform.position = transform.position + new Vector3 (0, 0.2f, 0);
             aBullet.transform.rotation = transform.localRotation;
 
-            aBullet.rigidbody2D.velocity = new Vector2 (-Mathf.Sin (Mathf.PI * transform.eulerAngles.z / 180), Mathf.Cos (Mathf.PI * transform.eulerAngles.z / 180)) * bulletSpeed;
+            aBullet.GetComponent<Rigidbody2D>().velocity = new Vector2 (-Mathf.Sin (Mathf.PI * transform.eulerAngles.z / 180), Mathf.Cos (Mathf.PI * transform.eulerAngles.z / 180)) * bulletSpeed;
 
             SoundManager.instance.PlayingSound("TankFire", 1f, transform.position);
         }

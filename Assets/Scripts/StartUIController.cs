@@ -62,12 +62,12 @@ public class StartUIController : MonoBehaviour
     public void onStartButtonPressed(GameObject obj)
     {
         gameController.StartGame(obj);
-        audio.Play();
+        GetComponent<AudioSource>().Play();
     }
 
     public void onReplayButtonPressed()
     {
-        audio.Play();
+        GetComponent<AudioSource>().Play();
 
         Invoke("replayGame", 0.05f);
     }

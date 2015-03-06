@@ -14,8 +14,8 @@ public class ShitController : MonoBehaviour
     void OnTriggerEnter2D (Collider2D other)
     {
         animator.SetBool ("collider", true);
-        rigidbody2D.collider2D.enabled = false;
-        rigidbody2D.Sleep ();
+        GetComponent<Rigidbody2D>().GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().Sleep ();
     }
 
     public void OnExpodeOver ()

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float lastSpeedX;
     private float lastTouchTime = 0;
     private bool firstOperate;
-    public bool showScreenEffect = true;
+    public bool showScreenEffect = false;
     private float startTime;
     private Vector2 m_gravity;
     private Collision2D collision;
@@ -210,14 +210,14 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator hideleft ()
     {
-        left.animation.Play ();
+        left.GetComponent<Animation>().Play ();
         yield return new WaitForSeconds (0.1f);
         left.SetActive (false);
     }
 
     IEnumerator hideright ()
     {
-        right.animation.Play ();
+        right.GetComponent<Animation>().Play ();
         yield return new WaitForSeconds (0.1f);
         right.SetActive (false);
     }
@@ -300,6 +300,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate ()
     {
-        rigidbody2D.AddForce (Gravity * rigidbody2D.mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce (Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
     }
 }

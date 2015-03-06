@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.tag != Tags.PILOT) 
         {
-            rigidbody2D.collider2D.enabled = false;
+            GetComponent<Rigidbody2D>().GetComponent<Collider2D>().enabled = false;
         }
     }
 }
