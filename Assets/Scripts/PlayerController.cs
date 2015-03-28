@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class PlayerController : MonoBehaviour
     public float downGravity = -40f;
     public float normalGravity = -40;
     public float ironMeshGravity = -10;
+
+
+
+
     private GameObject right;
     private GameObject left;
     private float moveX = 6.4f / 6;
@@ -252,7 +257,10 @@ public class PlayerController : MonoBehaviour
         showingContinueUI = false;
         collision.gameObject.SetActive (false);
         ContinueUI.SetActive (false);
-        Time.timeScale = 1;
+
+        _gameUIController.leftSectonds = 3;
+        _gameUIController.CountingDownLabel.gameObject.SetActive(true);
+        _gameUIController.StartCoroutine("ShowCountDown");
     }
 
     public void OnCancel ()
