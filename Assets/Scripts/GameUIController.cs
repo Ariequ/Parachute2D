@@ -25,7 +25,7 @@ public class GameUIController : MonoBehaviour
         while(leftSectonds > -1)
         {
             waitFrame ++;
-            if(waitFrame > 60)
+            if(waitFrame > 30)
             {
                 CountingDownLabel.text = (leftSectonds--).ToString();
                 waitFrame = 0;
