@@ -58,8 +58,8 @@ public class GameController : MonoBehaviour
 
 		SoundManager.instance.startBGM();
        
-        AdMob.requestInterstital( "ca-app-pub-1215085077559999/3564479460", "ca-app-pub-1215085077559999/5180813465" );
-        AdMob.init( "ca-app-pub-1215085077559999/3044727060", "ca-app-pub-1215085077559999/6187409461" );
+//        AdMob.requestInterstital( "ca-app-pub-1215085077559999/3564479460", "ca-app-pub-1215085077559999/5180813465" );
+//        AdMob.init( "ca-app-pub-1215085077559999/3044727060", "ca-app-pub-1215085077559999/6187409461" );
 
         gameUIController.UpdateUI(gameData);
     }
@@ -106,7 +106,7 @@ public class GameController : MonoBehaviour
             GoogleAnalytics.instance.LogScreen(shareString);          
         }
 
-        AdMob.createBanner( AdMobBanner.SmartBanner, AdMobLocation.BottomCenter );
+//        AdMob.createBanner( AdMobBanner.SmartBanner, AdMobLocation.BottomCenter );
 	}
 
 	public void Replay()
@@ -183,10 +183,10 @@ public class GameController : MonoBehaviour
     private void ShowAdmob()
     {
 		Debug.Log ("show admob");
-        if(AdMob.isInterstitalReady())
-        {
-            AdMob.displayInterstital();
-        }
+//        if(AdMob.isInterstitalReady())
+//        {
+//            AdMob.displayInterstital();
+//        }
     }
 
 	void OnDrawGizmos()
