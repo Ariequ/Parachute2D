@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     GameData _gameData;
     GameController gameController;
     GameUIController _gameUIController;
+
+	private Rigidbody2D rigidbody;
     
     enum Direction
     {
@@ -56,6 +58,8 @@ public class PlayerController : MonoBehaviour
         downGravity = normalGravity = -40f;
 
         gameController = GameObject.Find ("GameController").GetComponent<GameController> ();
+
+		rigidbody = GetComponent<Rigidbody2D> ();
     }
 
     void Update ()
@@ -308,6 +312,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate ()
     {
-        GetComponent<Rigidbody2D>().AddForce (Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
+		rigidbody.AddForce (Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
     }
 }

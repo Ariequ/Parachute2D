@@ -11,12 +11,15 @@ public class ParachuteController : MonoBehaviour
     private int currentIdleType;
 	private PlayerController playerController;
 
+	private Rigidbody2D rigidbody;
+
     // Use this for initialization
     void Start()
     {
         animator = GetComponent<Animator>();  
         currentIdleType = 1;
 		playerController = GameObject.Find(transform.parent.name + "/Pilot").GetComponent<PlayerController>();
+		rigidbody = GetComponent<Rigidbody2D> ();
     }
 	
     void OnTriggerEnter2D(Collider2D other)
@@ -46,7 +49,7 @@ public class ParachuteController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-        GetComponent<Rigidbody2D>().AddForce(-playerController.Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        rigidbody.AddForce(-playerController.Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
 	}
 
 }
