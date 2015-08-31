@@ -7,10 +7,10 @@ public class NotificationIOS : MonoBehaviour
     void Update ()
     {
         #if UNITY_IOS
-        if (NotificationServices.localNotificationCount > 0)
+        if (UnityEngine.iOS.NotificationServices.localNotificationCount > 0)
         {
-            Debug.Log (NotificationServices.localNotifications [0].alertBody);
-            NotificationServices.ClearLocalNotifications ();
+            Debug.Log (UnityEngine.iOS.NotificationServices.localNotifications [0].alertBody);
+            UnityEngine.iOS.NotificationServices.ClearLocalNotifications ();
         }
 #endif
     }
@@ -21,10 +21,10 @@ public class NotificationIOS : MonoBehaviour
 
         if (pauseStatus)
         {
-            var notif = new LocalNotification ();
+            UnityEngine.iOS.LocalNotification notif = new UnityEngine.iOS.LocalNotification ();
             notif.fireDate = DateTime.Now.AddSeconds (1800);
             notif.alertBody = "Why not try again!";
-            NotificationServices.ScheduleLocalNotification (notif);
+            UnityEngine.iOS.NotificationServices.ScheduleLocalNotification (notif);
         }
 #endif
     }

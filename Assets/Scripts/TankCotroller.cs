@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TankCotroller : MonoBehaviour
 {
-    public float bulletSpeed = 3;
+    public float bulletSpeed = 30;
     public GameObject bullet;
     private Animator animator;
     private bool fired = false;

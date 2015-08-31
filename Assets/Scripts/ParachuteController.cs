@@ -49,7 +49,7 @@ public class ParachuteController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-        rigidbody.AddForce(-playerController.Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        rigidbody.AddForce(-playerController.Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime * 10, ForceMode2D.Impulse);
 	}
 
 }

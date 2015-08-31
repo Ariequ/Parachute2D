@@ -312,6 +312,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate ()
     {
-		rigidbody.AddForce (Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
+		rigidbody.AddForce (Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime * 10, ForceMode2D.Impulse);
     }
 }
