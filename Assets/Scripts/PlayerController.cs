@@ -9,9 +9,6 @@ public class PlayerController : MonoBehaviour
     public float normalGravity = -40;
     public float ironMeshGravity = -10;
 
-
-
-
     private GameObject right;
     private GameObject left;
     private float moveX = 6.4f / 6;
@@ -253,6 +250,29 @@ public class PlayerController : MonoBehaviour
             OnCancel ();
         }
     }
+
+//    public void ShowReviveAD()
+//    {
+//        if (Advertisement.isReady())
+//        {
+//            // Show with default zone, pause engine and print result to debug log
+//            Advertisement.Show(null, new ShowOptions {
+//                pause = true,
+//                resultCallback = result => {
+//                    Debug.Log(result.ToString());
+//                    if(result == ShowResult.Finished)
+//                    {
+//                        Revive();
+//                        gameData.ReviveCount ++;
+//                    }
+//                }
+//            });
+//        }
+//        else
+//        {
+//            Debug.Log("Ad not Ready");
+//        }
+//    }
 
     public void OnConfirm ()
     {
