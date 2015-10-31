@@ -248,12 +248,12 @@ public class PlayerController : MonoBehaviour
         ContinueUI.SetActive(true);
         showingContinueUI = true;
 
-        int cost = 100*(++coinReviveCount);
+        int cost = 100*(coinReviveCount + 1);
 
-        
         if (gameData.DogCount >= cost)
         {
             usingAD = false;
+            coinReviveCount++;
             ContinueUI.GetComponent<ContinueUIController>().UpdateUI(true,cost);
         }
         else
@@ -359,6 +359,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidbody.AddForce(Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime * 10, ForceMode2D.Impulse);
+        rigidbody.AddForce(Gravity * GetComponent<Rigidbody2D>().mass * Time.fixedDeltaTime, ForceMode2D.Impulse);
     }
 }
