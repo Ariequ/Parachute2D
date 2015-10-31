@@ -25,6 +25,10 @@ public class TankCotroller : MonoBehaviour
 
             aBullet.GetComponent<Rigidbody2D>().velocity = new Vector2 (-Mathf.Sin (Mathf.PI * transform.eulerAngles.z / 180), Mathf.Cos (Mathf.PI * transform.eulerAngles.z / 180)) * bulletSpeed;
 
+//            aBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2 (-Mathf.Sin (Mathf.PI * transform.eulerAngles.z / 180), Mathf.Cos (Mathf.PI * transform.eulerAngles.z / 180)) * bulletSpeed * 10, ForceMode2D.Impulse);
+
+            Debug.Log(aBullet.GetComponent<Rigidbody2D>().velocity);
+
             SoundManager.instance.PlayingSound("TankFire", 1f, transform.position);
         }
     }
