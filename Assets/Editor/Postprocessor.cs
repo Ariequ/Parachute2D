@@ -11,17 +11,38 @@ public class Postprocessor
     [PostProcessBuildAttribute(1)]
     public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
     {
-        if (target == BuildTarget.iOS) 
+        if (target == BuildTarget.iOS)
         {
             _AddDeviceCapabilities(pathToBuiltProject);
         }
     }
 
-    static void _AddDeviceCapabilities(string pathToBuiltProject)
+    static void _AddDeviceCapabilities(string path)
     {
-        string infoPlistPath = Path.Combine (pathToBuiltProject, "./Info.plist");
+        string pbxprojPath = path + "/Unity-iPhone.xcodeproj/project.pbxproj";
+        
+        PBXProject project = new PBXProject();
+        project.ReadFromString(File.ReadAllText(pbxprojPath));
+        string target = project.TargetGuidByName("Unity-iPhone");
+
+        project.AddFrameworkToProject(target, "AdSupport.framework", false);
+        project.AddFrameworkToProject(target, "AudioToolbox.framework", false);
+        project.AddFrameworkToProject(target, "AVFoundation.framework", false);
+        project.AddFrameworkToProject(target, "CoreGraphics.framework", false);
+        project.AddFrameworkToProject(target, "CoreTelephony.framework", false);
+        project.AddFrameworkToProject(target, "EventKit.framework", false);
+        project.AddFrameworkToProject(target, "EventKitUI.framework", false);
+        project.AddFrameworkToProject(target, "MessageUI.framework", false);
+        project.AddFrameworkToProject(target, "StoreKit.framework", false);
+        project.AddFrameworkToProject(target, "SystemConfiguration.framework", false);
+
+        project.SetBuildProperty(target, "CLANG_ENABLE_MODULES", "YES");
+
+        File.WriteAllText(pbxprojPath, project.WriteToString());
+
+        string infoPlistPath = Path.Combine(path, "./Info.plist");
         PlistDocument plist = new PlistDocument();
-        plist.ReadFromString (File.ReadAllText(infoPlistPath));
+        plist.ReadFromString(File.ReadAllText(infoPlistPath));
 
         PlistElementDict rootDict = plist.root;
         PlistElementArray deviceCapabilityArray = rootDict.CreateArray("UIRequiredDeviceCapabilities");
@@ -30,6 +51,21 @@ public class Postprocessor
 
         rootDict.SetBoolean("UIRequiresFullScreen", true);
 
-        File.WriteAllText(infoPlistPath,plist.WriteToString());
+        File.WriteAllText(infoPlistPath, plist.WriteToString());
     }
+
+    //    private static void AddExternalFramework(string framework) {
+    //        var unityPath = "/../iOSFrameworks/" + framework;
+    //        var fullUnityPath = Application.dataPath + unityPath;
+    //
+    //        var frameworkPath = "Frameworks/" + framework;
+    //        var fullFrameworkPath = Path.Combine(_path, frameworkPath);
+    //
+    //        CopyAndReplaceDirectory(fullUnityPath, fullFrameworkPath);
+    //
+    //        var frameworkFileGuid = _project.AddFile(frameworkPath, frameworkPath, PBXSourceTree.Source);
+    //        _project.AddFileToBuild(_target, frameworkFileGuid);
+    //        AddFramework(framework);
+    //    }
+
 }
