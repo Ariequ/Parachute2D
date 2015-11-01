@@ -12,6 +12,12 @@ public class BuildPackage : MonoBehaviour
 		BuildPipeline.BuildPlayer(GetBuildScenes(), Application.dataPath + "/../build", BuildTarget.iOS, BuildOptions.None); 
 	}
 
+    [MenuItem("Tools/Build")]
+    public static void BuildAndroid ()
+    {        
+        BuildPipeline.BuildPlayer(GetBuildScenes(), Application.dataPath + "/../build/parachute.apk", BuildTarget.Android, BuildOptions.None); 
+    }
+
 	static string[] GetBuildScenes()
 	{ 
 		List<string> names = new List<string>(); 
