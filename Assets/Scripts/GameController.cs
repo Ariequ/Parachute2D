@@ -94,17 +94,17 @@ public class GameController : MonoBehaviour
 
 		RecoderManager.instance.StartNewRecoder();
 
-        if (GoogleAnalytics.instance)
-        {
-            string shareString = " Start Game";
-            
-            #if UNITY_IOS
-            shareString = "iOS " + shareString;
-            #elif UNITY_ANDROID
-            shareString = "Android" + shareString;
-            #endif
-            GoogleAnalytics.instance.LogScreen(shareString);          
-        }
+//        if (GoogleAnalytics.instance)
+//        {
+//            string shareString = " Start Game";
+//            
+//            #if UNITY_IOS
+//            shareString = "iOS " + shareString;
+//            #elif UNITY_ANDROID
+//            shareString = "Android" + shareString;
+//            #endif
+//            GoogleAnalytics.instance.LogScreen(shareString);          
+//        }
 
 //        AdMob.createBanner( AdMobBanner.SmartBanner, AdMobLocation.BottomCenter );
 	}
@@ -158,19 +158,19 @@ public class GameController : MonoBehaviour
 
 		SoundManager.instance.stopBMG();
         
-        if (GoogleAnalytics.instance)
-        {
-            string shareString = " Score: " + startUI.CurrentScore;
-            
-            #if UNITY_IOS
-            shareString = "iOS " + shareString;
-            #elif UNITY_ANDROID
-            shareString = "Android" + shareString;
-            #endif
-            GoogleAnalytics.instance.LogScreen(shareString);
-
-            Debug.Log("Add to GoogleAnalyticss " + shareString);                   
-        }
+//        if (GoogleAnalytics.instance)
+//        {
+//            string shareString = " Score: " + startUI.CurrentScore;
+//            
+//            #if UNITY_IOS
+//            shareString = "iOS " + shareString;
+//            #elif UNITY_ANDROID
+//            shareString = "Android" + shareString;
+//            #endif
+//            GoogleAnalytics.instance.LogScreen(shareString);
+//
+//            Debug.Log("Add to GoogleAnalyticss " + shareString);                   
+//        }
 
         Invoke("ShowAdmob", 1f);
 	}
